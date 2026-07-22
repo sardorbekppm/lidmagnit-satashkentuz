@@ -12,7 +12,7 @@ then forwards to the Telegram channel. Nothing else to load.
 | GTM container | `GTM-WL46HXLT` (loader + noscript) |
 | Meta Pixel | `955344730737867` (safety-net fallback) |
 | Telegram | `https://t.me/+3ND_eUdCydU2ZDAy` |
-| Countdown target | `2026-08-15 10:00` (UZ time) — change if the date differs |
+| Countdown target | `2026-08-01 10:00` (UZ time) — change if the date differs |
 
 Nothing needs editing to go live. To tweak later, everything sits in the
 **CHANGEABLE CONFIG** block at the top of `index.html`.
