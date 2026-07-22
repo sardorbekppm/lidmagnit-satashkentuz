@@ -22,6 +22,8 @@ Nothing needs editing to go live. To tweak later, everything sits in the
 |---|---|
 | `index.html` | The whole thing — page, popup, config, tracking |
 | `logo.svg` | SATashkent crest (logo + favicon) |
+| `fonts/` | Self-hosted Inter + Plus Jakarta Sans (variable woff2, latin subset) |
+| `_headers` / `vercel.json` | Long-lived cache headers for fonts (Netlify / Vercel) |
 | `og-image.png` | **Optional** — add a 1200×630 image for Telegram/Meta link previews |
 
 ## Deploy (GitHub → Netlify or Vercel)
@@ -57,6 +59,8 @@ to a bot link and the code will auto-tag `?start=<source>`).
 The popup doesn't change the URL, so use an **event-based** Custom Conversion pointing
 at the **`Lead`** event (not a `/thanks` URL rule), then optimize campaigns for it.
 
-## Making it faster (optional)
-The two Google Fonts are the only render-blocking third-party request left. Self-host
-them or switch to a system-font stack to remove the round-trip. Everything else is inline.
+## Performance
+Nothing render-blocking leaves the origin: fonts are self-hosted in `fonts/`
+(the same variable woff2 files Google Fonts serves, preloaded, `font-display: swap`),
+CSS/JS are inline, and GTM + Meta Pixel load async. `_headers` (Netlify) and
+`vercel.json` (Vercel) cache the fonts for a year, so repeat visits skip them entirely.
