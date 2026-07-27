@@ -46,8 +46,10 @@
     // Default source if the ad URL has no ?utm_source=
     defaultSource: "direct",
 
-    // How long the thanks popup shows before forwarding to Telegram (ms)
-    redirectDelayMs: 1600
+    // How long the thanks popup shows before forwarding to Telegram (ms).
+    // Kept short so the redirect feels instant; a small delay still lets the
+    // Meta/GTM conversion beacons leave the page before navigation.
+    redirectDelayMs: 350
   };
 
   // ---- Google Tag Manager loader ----
@@ -292,16 +294,18 @@
   }
 
   /* ---------- THANKS POPUP ---------- */
+  /* No backdrop-filter here: a full-screen blur costs a slow phone tens of ms
+     right when the popup needs to paint. A solid scrim looks the same at speed. */
   .modal-overlay{
     position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:24px;
-    background:rgba(10,10,10,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-    opacity:0;transition:opacity .25s ease;
+    background:rgba(10,10,10,.62);
+    opacity:0;transition:opacity .12s ease;
   }
   .modal-overlay.open{opacity:1}
   .modal-card{
     background:#fff;border-radius:22px;max-width:380px;width:100%;padding:34px 26px;text-align:center;
     box-shadow:0 30px 70px -20px rgba(0,0,0,.45);
-    transform:translateY(12px) scale(.97);transition:transform .28s cubic-bezier(.2,.8,.2,1);
+    transform:translateY(8px) scale(.98);transition:transform .14s cubic-bezier(.2,.8,.2,1);
   }
   .modal-overlay.open .modal-card{transform:translateY(0) scale(1)}
   .modal-logo{width:56px;height:56px;margin:0 auto 18px;display:block}
@@ -505,6 +509,8 @@
   var modalBtn = document.getElementById('modalTgBtn');
   var redirectT;
   modalBtn.setAttribute('href', tgUrl);
+  // Explicit null check so redirectDelayMs:0 means "no wait", not "use default".
+  var redirectDelay = cfg.redirectDelayMs == null ? 350 : cfg.redirectDelayMs;
 
   function fireConversion(){
     try{ (window.dataLayer=window.dataLayer||[]).push({event:'lead', source:source}); }catch(e){}
@@ -516,7 +522,7 @@
     try{ modalBtn.focus(); }catch(e){}
     fireConversion();
     clearTimeout(redirectT);
-    redirectT = setTimeout(function(){ window.location.href = tgUrl; }, cfg.redirectDelayMs || 1600);
+    redirectT = setTimeout(function(){ window.location.href = tgUrl; }, redirectDelay);
   }
   function closeThanks(){
     clearTimeout(redirectT);
