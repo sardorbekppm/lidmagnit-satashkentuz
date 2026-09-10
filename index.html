@@ -20,6 +20,7 @@
      leaves this origin. crossorigin is required on font preloads even same-origin. -->
 <link rel="preload" href="fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/plus-jakarta-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://connect.facebook.net">
 
@@ -31,7 +32,9 @@
   window.SITE_CONFIG = {
     // Final destination. Every CTA on the page forwards here.
     // "SAT Full Course | @satashkent" - 26 lessons (11 English + 15 Math).
-    youtubeLink: "https://youtube.com/playlist?list=PLLGFrV7SE5K4&si=u2idTNfMAfUAxL_P",
+    // Uses the www host on purpose: the bare youtube.com URL 301s to it, and
+    // paying that redirect hop is a whole round trip on a phone connection.
+    youtubeLink: "https://www.youtube.com/playlist?list=PLLGFrV7SE5K4&si=u2idTNfMAfUAxL_P",
 
     // Google Tag Manager container. Leave "" to disable GTM.
     gtmId: "GTM-WL46HXLT",
@@ -43,32 +46,59 @@
     // Default source if the ad URL has no ?utm_source=
     defaultSource: "direct",
 
-    // How long the thanks popup shows before forwarding to YouTube (ms).
-    // Kept short so the redirect feels instant; a small delay still lets the
-    // Meta/GTM conversion beacons leave the page before navigation.
-    redirectDelayMs: 350
+    // ---- Redirect timing ----
+    // The popup is the conversion. Rather than guessing a delay, the redirect
+    // waits for GTM to confirm every tag bound to the `lead` event has fired
+    // (eventCallback), then goes. These two only bound that wait:
+    //   min - popup stays up at least this long, so it reads as a confirmation
+    //         instead of a flash. Typical redirect lands right here.
+    //   max - hard ceiling if GTM is slow. Conversion still wins over speed.
+    redirectMinMs: 200,
+    redirectMaxWaitMs: 900,
+
+    // How long after first paint the tracking scripts load. They are kept off
+    // the critical path entirely; a CTA click loads them immediately anyway.
+    tagDelayMs: 150
   };
 
-  // ---- Google Tag Manager loader ----
-  (function(w,d,s,l,i){
-    if(!i || i.indexOf('GTM-')!==0) return;
-    w[l]=w[l]||[]; w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-    var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
-    j.async=true; j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-    f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer', window.SITE_CONFIG.gtmId);
-
-  // ---- Meta Pixel fallback (only if metaPixelId set) ----
+  // ---- Tag bootstrap ----------------------------------------------------
+  // GTM and the Pixel used to load in this <head> on the critical path. Between
+  // them they pulled in ~1.7s of requests before the page had settled. Here we
+  // only set up the queues - dataLayer.push() and fbq() are safe to call from
+  // the first millisecond - and defer the actual scripts until after paint.
   (function(){
-    var id = window.SITE_CONFIG.metaPixelId;
-    if(!id) return;
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', id);
-    fbq('track', 'PageView');
+    var cfg = window.SITE_CONFIG;
+    window.dataLayer = window.dataLayer || [];
+
+    // Meta Pixel stub: queues calls until fbevents.js arrives and replays them.
+    (function(f){
+      if(f.fbq) return;
+      var n = f.fbq = function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments); };
+      if(!f._fbq) f._fbq = n;
+      n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+    })(window);
+
+    if(cfg.metaPixelId){ fbq('init', cfg.metaPixelId); fbq('track','PageView'); }
+    if(cfg.gtmId){ window.dataLayer.push({'gtm.start': new Date().getTime(), event:'gtm.js'}); }
+
+    var requested = false;
+    window.SAT_TAGS_BLOCKED = false;   // set if an ad blocker kills the request
+    function inject(src){
+      var el = document.createElement('script');
+      el.async = true; el.src = src;
+      el.onerror = function(){ window.SAT_TAGS_BLOCKED = true; };
+      document.head.appendChild(el);
+    }
+    window.SAT_loadTags = function(){
+      if(requested) return; requested = true;
+      if(cfg.gtmId && cfg.gtmId.indexOf('GTM-') === 0) inject('https://www.googletagmanager.com/gtm.js?id=' + cfg.gtmId);
+      if(cfg.metaPixelId) inject('https://connect.facebook.net/en_US/fbevents.js');
+    };
+
+    var delay = cfg.tagDelayMs == null ? 150 : cfg.tagDelayMs;
+    requestAnimationFrame(function(){ setTimeout(window.SAT_loadTags, delay); });
+    // Background tabs throttle rAF to a crawl, so guarantee a load regardless.
+    setTimeout(window.SAT_loadTags, 2500);
   })();
 </script>
 <noscript><img height="1" width="1" style="display:none"
@@ -548,25 +578,54 @@
   // ---- 3. Thanks popup + conversion ----
   var overlay = document.getElementById('thanksModal');
   var modalBtn = document.getElementById('modalYtBtn');
-  var redirectT;
   modalBtn.setAttribute('href', ytUrl);
-  // Explicit null check so redirectDelayMs:0 means "no wait", not "use default".
-  var redirectDelay = cfg.redirectDelayMs == null ? 350 : cfg.redirectDelayMs;
 
-  function fireConversion(){
-    try{ (window.dataLayer=window.dataLayer||[]).push({event:'lead', source:source}); }catch(e){}
-    try{ if(typeof fbq==='function') fbq('track','Lead',{content_name:'SAT Full Course', content_category:'lead_magnet', source:source}); }catch(e){}
-  }
+  // Bumped on every open/close so a late eventCallback from a popup the visitor
+  // already dismissed can't yank them to YouTube.
+  var openToken = 0, timers = [];
+  function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+
   function openThanks(){
+    // They're leaving in a moment - the tags have to be in flight now.
+    if(window.SAT_loadTags) window.SAT_loadTags();
+
+    var token = ++openToken;
+    clearTimers();
     overlay.style.display='flex';
     requestAnimationFrame(function(){ overlay.classList.add('open'); });
     try{ modalBtn.focus(); }catch(e){}
-    fireConversion();
-    clearTimeout(redirectT);
-    redirectT = setTimeout(function(){ window.location.href = ytUrl; }, redirectDelay);
+
+    var minMs = cfg.redirectMinMs == null ? 200 : cfg.redirectMinMs;
+    var maxMs = cfg.redirectMaxWaitMs == null ? 900 : cfg.redirectMaxWaitMs;
+    // Nothing to wait for if the tags never made it past an ad blocker.
+    if(window.SAT_TAGS_BLOCKED) maxMs = Math.min(maxMs, 150);
+
+    var tagsFired = false, minPassed = false, navigated = false;
+    function maybeGo(){
+      if(navigated || token !== openToken || !tagsFired || !minPassed) return;
+      navigated = true; clearTimers();
+      window.location.href = ytUrl;
+    }
+    function tagsDone(){ tagsFired = true; maybeGo(); }
+
+    timers.push(setTimeout(function(){ minPassed = true; maybeGo(); }, minMs));
+    timers.push(setTimeout(tagsDone, maxMs));   // ceiling if GTM stalls
+
+    // GTM fires eventCallback once every tag bound to this event has run, so the
+    // redirect is gated on the conversion actually leaving rather than a guess.
+    // >> Point your ViewContent custom conversion at this `lead` event. <<
+    (window.dataLayer=window.dataLayer||[]).push({
+      event:'lead',
+      source:source,
+      eventCallback: tagsDone,
+      eventTimeout: maxMs
+    });
+    try{ if(typeof fbq==='function') fbq('track','Lead',{content_name:'SAT Full Course', content_category:'lead_magnet', source:source}); }catch(e){}
   }
+
   function closeThanks(){
-    clearTimeout(redirectT);
+    openToken++;            // invalidates any pending redirect for this open
+    clearTimers();
     overlay.classList.remove('open');
     setTimeout(function(){ overlay.style.display='none'; }, 250);
   }
@@ -575,6 +634,7 @@
     el.setAttribute('href', ytUrl); // fallback if JS/popup fails
     el.addEventListener('click', function(ev){
       ev.preventDefault();
+      if(window.SAT_loadTags) window.SAT_loadTags();
       try{ (window.dataLayer=window.dataLayer||[]).push({event:'cta_click', source:source}); }catch(e){}
       openThanks();
     });
