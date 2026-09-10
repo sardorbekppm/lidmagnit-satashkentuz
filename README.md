@@ -1,21 +1,31 @@
-# SATashkent — APPDATE landing
+# SATashkent — free SAT course landing
 
-Mobile-first pre-launch landing for the August APPDATE campaign.
-Funnel: **Meta / Telegram ads → this landing → thanks popup → Telegram channel**.
+Mobile-first landing for the free **SAT English + SAT Math** video course.
+Funnel: **Meta / Telegram ads → this landing → thanks popup → YouTube playlist**.
 
 Single page. Clicking any CTA opens a thank-you **popup** that fires the conversion,
-then forwards to the Telegram channel. Nothing else to load.
+then forwards to the YouTube playlist. Nothing else to load.
 
 ## ✅ Already configured — just deploy
 | Setting | Value (live in `index.html`) |
 |---|---|
 | GTM container | `GTM-WL46HXLT` (loader + noscript) |
 | Meta Pixel | `955344730737867` (safety-net fallback) |
-| Telegram | `https://t.me/+3ND_eUdCydU2ZDAy` |
-| Countdown target | `2026-08-01 10:00` (UZ time) — change if the date differs |
+| YouTube playlist | `SAT Full Course \| @satashkent` — 26 lessons |
 
 Nothing needs editing to go live. To tweak later, everything sits in the
 **CHANGEABLE CONFIG** block at the top of `index.html`.
+
+## What the page says
+Two courses, one playlist:
+
+| Course | Topics | Proof point |
+|---|---|---|
+| SAT English | 11 | mentors whose students graduated with **1500+** scores |
+| SAT Math | 15 | mentors whose students scored **780+** on SAT Math |
+
+Both promise the same explanations, the same presentations, and (for Math) the same
+Desmos tricks used in SATashkent's real classes — for free.
 
 ## Files
 | File | What it is |
@@ -39,9 +49,8 @@ Send each channel to the landing with a `utm_source`:
 - Telegram ads → `https://yoursite.com/?utm_source=telegram`
 
 That source flows into every dataLayer event as a `source` property, so you can split
-reporting by channel in GTM / Meta. The Telegram link is a **private channel invite**,
-so it's used as-is (the `?start=` bot trick doesn't apply to channels — switch the CTA
-to a bot link and the code will auto-tag `?start=<source>`).
+reporting by channel in GTM / Meta. The YouTube link is used verbatim — YouTube ignores
+unknown query params, so attribution rides the dataLayer instead of the URL.
 
 ### Events pushed to the dataLayer
 | Event | When |
@@ -54,6 +63,11 @@ to a bot link and the code will auto-tag `?start=<source>`).
 1. Add your **Meta Pixel** tag (or keep the built-in fallback and set `metaPixelId:""`).
 2. Trigger it on the custom event **`lead`**.
 3. `source` is in the dataLayer if you want per-channel breakdowns.
+
+> **Heads-up:** the live container currently also fires a Meta **`Subscribe`** event on
+> `cta_click`. That was set up for the old "join the Telegram channel" funnel. It still
+> fires on this page — review or rename it in GTM if `Subscribe` no longer matches what
+> you're optimizing for.
 
 ### In Meta Ads Manager
 The popup doesn't change the URL, so use an **event-based** Custom Conversion pointing

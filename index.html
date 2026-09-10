@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#aa233b">
 
-<title>SATashkent APPDATE — 0'dan 1500+ gacha bepul</title>
-<meta name="description" content="Avgustda SATashkent APPDATE'ni ishga tushiradi. SAT'ga noldan yuqori ballgacha tayyorgarlik endi butunlay bepul. Birinchilardan bo'ling.">
+<title>Free SAT Course — English + Math | SATashkent</title>
+<meta name="description" content="All 11 SAT English topics and all 15 SAT Math topics, taught by the SATashkent mentors behind 1500+ scores. Same classes, same presentations, same Desmos tricks — 26 lessons, free on YouTube.">
 
 <!-- Social preview (Telegram / Meta link cards) -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="SATashkent APPDATE — 0'dan 1500+ gacha bepul">
-<meta property="og:description" content="Avgustda juda katta yangilik. SAT'ga tayyorgarlik hamma uchun bepul. Birinchilardan bo'ling.">
+<meta property="og:title" content="Free SAT Course — English + Math | SATashkent">
+<meta property="og:description" content="26 lessons covering every SAT English and Math topic. Same mentors, same presentations as SATashkent's real classes. Completely free.">
 <meta property="og:image" content="og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -25,13 +25,13 @@
 
 <!-- ============================================================= -->
 <!--  CHANGEABLE CONFIG - edit these values, commit, redeploy       -->
-<!--  Everything lives in this one file now (popup, no 2nd page).   -->
+<!--  Everything lives in this one file (popup, no 2nd page).       -->
 <!-- ============================================================= -->
 <script>
   window.SITE_CONFIG = {
-    // Final destination (private channel invite). Source attribution runs
-    // through GTM/Meta; a bot link here would also get ?start=<source> auto-added.
-    telegramLink: "https://t.me/+3ND_eUdCydU2ZDAy",
+    // Final destination. Every CTA on the page forwards here.
+    // "SAT Full Course | @satashkent" - 26 lessons (11 English + 15 Math).
+    youtubeLink: "https://youtube.com/playlist?list=PLLGFrV7SE5K4&si=u2idTNfMAfUAxL_P",
 
     // Google Tag Manager container. Leave "" to disable GTM.
     gtmId: "GTM-WL46HXLT",
@@ -40,13 +40,10 @@
     // Set "" once you fire the Pixel entirely from inside GTM.
     metaPixelId: "955344730737867",
 
-    // APPDATE launch - countdown target. Uzbekistan time (+05:00).
-    launchDate: "2026-08-01T10:00:00+05:00",
-
     // Default source if the ad URL has no ?utm_source=
     defaultSource: "direct",
 
-    // How long the thanks popup shows before forwarding to Telegram (ms).
+    // How long the thanks popup shows before forwarding to YouTube (ms).
     // Kept short so the redirect feels instant; a small delay still lets the
     // Meta/GTM conversion beacons leave the page before navigation.
     redirectDelayMs: 350
@@ -116,7 +113,7 @@
   }
   .container{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
   .accent{color:var(--red)}
-  .tg-ico{flex:0 0 auto}
+  .yt-ico{flex:0 0 auto}
 
   /* ---------- NAV ---------- */
   nav{
@@ -174,28 +171,29 @@
     font-variant-numeric:tabular-nums;
   }
   .hero-sub{
-    max-width:540px;margin:24px auto 0;
+    max-width:560px;margin:24px auto 0;
     font-size:clamp(14px,3.9vw,18px);color:var(--ink-3);line-height:1.55;
     animation:fadeUp .7s ease-out .25s backwards;
   }
   .hero-sub strong{color:var(--ink);font-weight:700}
   .hero-sub .tag{color:var(--red);font-weight:700}
 
-  /* ---------- COUNTDOWN ---------- */
-  .countdown{margin:34px auto 0;max-width:340px;animation:fadeUp .7s ease-out .32s backwards}
-  .countdown-label{
+  /* ---------- HERO STATS ---------- */
+  /* Same grid rhythm the countdown used to occupy, so the mobile hero keeps
+     its tuned vertical spacing — just static facts instead of a ticking clock. */
+  .stats{margin:34px auto 0;max-width:340px;animation:fadeUp .7s ease-out .32s backwards}
+  .stats-label{
     font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
     color:var(--ink-4);margin-bottom:10px;
   }
-  .cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-  .cd-cell{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:9px 4px 8px}
-  .cd-num{
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .stat-cell{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:9px 4px 8px}
+  .stat-num{
     font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
     font-size:clamp(20px,5.6vw,34px);line-height:1;color:var(--ink);
     letter-spacing:-.02em;font-variant-numeric:tabular-nums;
   }
-  .cd-unit{margin-top:4px;font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4)}
-  .cd-done{background:var(--red-tint);color:var(--red);border-radius:14px;padding:16px;font-weight:700;font-size:15px}
+  .stat-unit{margin-top:4px;font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4)}
 
   /* ---------- BUTTONS ---------- */
   .hero-cta-row{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:34px;animation:fadeUp .7s ease-out .4s backwards}
@@ -209,6 +207,7 @@
   }
   .btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 16px 38px -8px rgba(170,35,59,.6)}
   .btn-primary:focus-visible{outline:3px solid rgba(170,35,59,.4);outline-offset:3px}
+  .btn-note{font-size:12.5px;color:var(--ink-4);font-weight:500}
 
   /* ---------- SECTIONS ---------- */
   section.block{padding:48px 0}
@@ -221,20 +220,37 @@
   }
   .sec-sub{margin-top:12px;font-size:15.5px;color:var(--ink-3);max-width:520px;margin-left:auto;margin-right:auto}
 
-  .cards{display:grid;grid-template-columns:1fr;gap:14px}
-  .card{
-    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-    padding:22px;display:flex;gap:16px;align-items:flex-start;
+  /* ---------- COURSE CARDS ---------- */
+  .course-grid{display:grid;grid-template-columns:1fr;gap:16px}
+  .course{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
+    padding:26px 22px;display:flex;flex-direction:column;
     transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   }
-  .card:hover{transform:translateY(-3px);border-color:rgba(170,35,59,.22);box-shadow:0 18px 36px -22px rgba(0,0,0,.14)}
-  .card-icon{
-    flex:0 0 auto;width:46px;height:46px;border-radius:13px;background:var(--red-tint);color:var(--red);
+  .course:hover{transform:translateY(-3px);border-color:rgba(170,35,59,.22);box-shadow:0 18px 36px -22px rgba(0,0,0,.14)}
+  .course-top{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .course-icon{
+    flex:0 0 auto;width:48px;height:48px;border-radius:14px;background:var(--red-tint);color:var(--red);
     display:flex;align-items:center;justify-content:center;
   }
-  .card-icon svg{width:24px;height:24px}
-  .card h3{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.015em;color:var(--ink);margin-bottom:5px}
-  .card p{font-size:14.5px;color:var(--ink-3);line-height:1.5}
+  .course-icon svg{width:25px;height:25px}
+  .course h3{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+    font-size:clamp(19px,4.8vw,23px);letter-spacing:-.02em;color:var(--ink);line-height:1.2;
+  }
+  .course-count{
+    display:inline-block;margin-top:4px;font-size:11.5px;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--red);
+  }
+  .course-list{display:grid;grid-template-columns:1fr;gap:2px;margin-top:14px}
+  .course-item{
+    display:flex;align-items:flex-start;gap:11px;padding:11px 2px;
+    border-bottom:1px solid var(--border);font-size:14.5px;color:var(--ink-2);
+    font-weight:500;line-height:1.45;
+  }
+  .course-item:last-child{border-bottom:none}
+  .course-item strong{font-weight:700;color:var(--ink)}
+  .ci-text{flex:1 1 auto;min-width:0}
 
   /* ---------- INSIDE LIST ---------- */
   .inside{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px 22px}
@@ -246,6 +262,8 @@
   .inside-item:last-child{border-bottom:none}
   .check{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center}
   .check svg{width:13px;height:13px}
+  .check-sm{width:21px;height:21px;margin-top:1px}
+  .check-sm svg{width:11px;height:11px}
 
   /* ---------- FINAL CTA ---------- */
   .final{padding:8px 0 56px}
@@ -342,14 +360,14 @@
     .nav-inner{height:64px}
     .brand span{font-size:18px}
     .hero{padding:72px 0 20px}
-    .countdown{margin-top:38px;max-width:420px}
-    .countdown-label{font-size:12px;margin-bottom:12px}
-    .cd-cell{padding:12px 4px 10px}
-    .cd-num{font-size:34px}
-    .cd-unit{font-size:10.5px;margin-top:6px}
-    .cd-grid{gap:12px}
-    .cards{grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{flex-direction:column;padding:26px}
+    .stats{margin-top:38px;max-width:420px}
+    .stats-label{font-size:12px;margin-bottom:12px}
+    .stat-cell{padding:12px 4px 10px}
+    .stat-num{font-size:34px}
+    .stat-unit{font-size:10.5px;margin-top:6px}
+    .stat-grid{gap:12px}
+    .course-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+    .course{padding:30px 26px}
     section.block{padding:64px 0}
     .final-card{padding:60px 40px}
     .sticky-cta{display:none}
@@ -370,36 +388,37 @@
       <span>SATashkent</span>
     </a>
     <a href="#" class="nav-cta" data-cta>
-      <svg class="tg-ico" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-      APPDATE'ni oling
+      <svg class="yt-ico" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      Watch free
     </a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="container">
-    <div class="pill">Avgust 2026 · APPDATE</div>
-    <h1><span class="big" id="scoreJump">0'dan 1500+</span> gacha<br>SAT endi <span class="accent">bepul.</span></h1>
+    <div class="pill">26 free lessons · Now on YouTube</div>
+    <h1><span class="big" id="scoreJump">0 to 1500+</span><br>SAT is now <span class="accent">free.</span></h1>
     <p class="hero-sub">
-      Avgustda SATashkent <span class="tag">APPDATE</span>'ni ishga tushiradi. SAT'ga noldan
-      yuqori ballgacha tayyorgarlik <strong>hamma uchun butunlay bepul</strong>. Siz ham birinchilardan bo'ling.
+      Every SAT <span class="tag">English</span> and <span class="tag">Math</span> topic from SATashkent's real
+      classes — the same mentors, the same presentations, the same Desmos tricks.
+      <strong>26 lessons. Zero cost.</strong>
     </p>
 
-    <div class="countdown" id="countdown">
-      <div class="countdown-label">APPDATE'gacha qoldi</div>
-      <div class="cd-grid" id="cdGrid">
-        <div class="cd-cell"><div class="cd-num" id="cdD">--</div><div class="cd-unit">kun</div></div>
-        <div class="cd-cell"><div class="cd-num" id="cdH">--</div><div class="cd-unit">soat</div></div>
-        <div class="cd-cell"><div class="cd-num" id="cdM">--</div><div class="cd-unit">daqiqa</div></div>
-        <div class="cd-cell"><div class="cd-num" id="cdS">--</div><div class="cd-unit">soniya</div></div>
+    <div class="stats">
+      <div class="stats-label">What's inside</div>
+      <div class="stat-grid">
+        <div class="stat-cell"><div class="stat-num">11</div><div class="stat-unit">English</div></div>
+        <div class="stat-cell"><div class="stat-num">15</div><div class="stat-unit">Math</div></div>
+        <div class="stat-cell"><div class="stat-num">26</div><div class="stat-unit">Lessons</div></div>
       </div>
     </div>
 
     <div class="hero-cta-row">
       <a href="#" class="btn-primary" data-cta>
-        <svg class="tg-ico" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        Dastur va APPDATE haqida bilish
+        <svg class="yt-ico" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        Watch the full course — free
       </a>
+      <div class="btn-note">No signup. No payment. Just press play.</div>
     </div>
   </div>
 </section>
@@ -407,24 +426,49 @@
 <section class="block">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="eyebrow">Nima o'zgaradi</div>
-      <h2 class="sec-title">Avgustdan boshlab hammasi bepul</h2>
-      <p class="sec-sub">Endi SAT'ga tayyorlanish uchun pul ham, qiyinchilik ham kerak emas.</p>
+      <div class="eyebrow">Two full courses</div>
+      <h2 class="sec-title">Everything SATashkent teaches in class</h2>
+      <p class="sec-sub">Both courses, start to finish, on one playlist — taught by @satashkent's top mentors.</p>
     </div>
 
-    <div class="cards">
-      <div class="card reveal">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
-        <div><h3>0'dan 1500+ gacha</h3><p>Noldan boshlab yuqori ballgacha to'liq yo'l — bosqichma-bosqich, hech qanday to'lovsiz.</p></div>
+    <div class="course-grid">
+
+      <div class="course reveal">
+        <div class="course-top">
+          <div class="course-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 20h4L18.6 9.4a2.83 2.83 0 1 0-4-4L4 16v4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M13.5 6.5l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h3>SAT English Course</h3>
+            <span class="course-count">11 topics</span>
+          </div>
+        </div>
+        <div class="course-list">
+          <div class="course-item"><span class="check check-sm"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ci-text">All <strong>11 main SAT English topics</strong></span></div>
+          <div class="course-item"><span class="check check-sm"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ci-text">The same topic explanations as in SATashkent's real classes</span></div>
+          <div class="course-item"><span class="check check-sm"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ci-text">The same presentations used in SATashkent's real classes</span></div>
+          <div class="course-item"><span class="check check-sm"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ci-text">The same TOP mentors whose students graduated with <strong>1500+ scores</strong></span></div>
+        </div>
       </div>
-      <div class="card reveal">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="2.5" width="12" height="19" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-        <div><h3>Yangi APP</h3><p>Barcha darslar, testlar va resurslar bitta ilovada. Istalgan joyda, telefoningizda.</p></div>
+
+      <div class="course reveal">
+        <div class="course-top">
+          <div class="course-icon">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6.6" r="1.7" fill="currentColor"/><path d="M4.5 12h15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.7" fill="currentColor"/></svg>
+          </div>
+          <div>
+            <h3>Full SAT Math Course</h3>
+            <span class="course-count">15 topics</span>
+          </div>
+        </div>
+        <div class="course-list">
+          <div class="course-item"><span class="check check-sm"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ci-text">All <strong>15 main SAT Math topics</strong></span></div>
+          <div class="course-item"><span class="check check-sm"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ci-text">The same topic explanations as in SATashkent's real classes</span></div>
+          <div class="course-item"><span class="check check-sm"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ci-text">The same <strong>Desmos tricks</strong> taught in SATashkent classes</span></div>
+          <div class="course-item"><span class="check check-sm"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ci-text">The same TOP mentors whose students scored <strong>780+ on SAT Math</strong></span></div>
+        </div>
       </div>
-      <div class="card reveal">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M5 20c0-3.2 3-5.5 7-5.5s7 2.3 7 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-        <div><h3>Hammaga ochiq</h3><p>Millionlab o'quvchilar uchun. Qayerda bo'lishingizdan qat'i nazar, siz ham qo'shilasiz.</p></div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -432,14 +476,14 @@
 <section class="block" style="padding-top:0">
   <div class="container">
     <div class="inside reveal">
-      <div class="eyebrow" style="text-align:center">Bepul dasturda</div>
-      <h2 class="sec-title" style="text-align:center;font-size:clamp(22px,5.6vw,30px)">0'dan 1500+ gacha nima bor</h2>
+      <div class="eyebrow" style="text-align:center">All in one place</div>
+      <h2 class="sec-title" style="text-align:center;font-size:clamp(22px,5.6vw,30px)">Why it's worth your time</h2>
       <div class="inside-list">
-        <div class="inside-item"><span class="check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Boshlang'ich darajadan boshlanadigan darslar</div>
-        <div class="inside-item"><span class="check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Real SAT imtihon savollari va to'plamlar</div>
-        <div class="inside-item"><span class="check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Har bir mavzu bo'yicha testlar va mashqlar</div>
-        <div class="inside-item"><span class="check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> SATashkent R&D jamoasi tayyorlagan materiallar</div>
-        <div class="inside-item"><span class="check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Hammasi yangi ilovada, bir joyda</div>
+        <div class="inside-item"><span class="check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Taught by the mentors behind 1500+ SAT scores</div>
+        <div class="inside-item"><span class="check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> The exact presentations used in SATashkent classrooms</div>
+        <div class="inside-item"><span class="check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Desmos strategies for every SAT Math topic</div>
+        <div class="inside-item"><span class="check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> 26 lessons — watch in any order, at your own pace</div>
+        <div class="inside-item"><span class="check"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> No signup, no payment, no catch</div>
       </div>
     </div>
   </div>
@@ -448,11 +492,11 @@
 <section class="final">
   <div class="container">
     <div class="final-card reveal">
-      <h2>APPDATE'ni birinchilardan bo'lib oling</h2>
-      <p>Telegram kanalimizga qo'shiling — ishga tushishi haqida birinchi bo'lib xabar olasiz.</p>
+      <h2>Start the full SAT course today</h2>
+      <p>26 lessons covering every English and Math topic — completely free on YouTube.</p>
       <a href="#" class="btn-light" data-cta>
-        <svg class="tg-ico" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        Telegramga o'tish
+        <svg class="yt-ico" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        Watch on YouTube
       </a>
     </div>
   </div>
@@ -467,8 +511,8 @@
 
 <div class="sticky-cta" id="stickyCta">
   <a href="#" data-cta>
-    <svg class="tg-ico" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-    Dastur va APPDATE haqida bilish
+    <svg class="yt-ico" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+    Watch the full course — free
   </a>
 </div>
 
@@ -477,13 +521,13 @@
   <div class="modal-card">
     <img src="logo.svg" alt="SATashkent" class="modal-logo">
     <div class="modal-ring" aria-hidden="true"></div>
-    <h2 id="thanksTitle">Rahmat! 🎉</h2>
-    <p>Sizni Telegram kanalimizga yo'naltiryapmiz. APPDATE haqidagi barcha yangiliklar shu yerda bo'ladi.</p>
-    <a href="#" class="modal-btn" id="modalTgBtn" rel="noopener">
-      <svg class="tg-ico" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-      Telegramga o'tish
+    <h2 id="thanksTitle">Let's go! 🎉</h2>
+    <p>Taking you to the full SAT course on YouTube — 11 English and 15 Math lessons, all free.</p>
+    <a href="#" class="modal-btn" id="modalYtBtn" rel="noopener">
+      <svg class="yt-ico" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      Open on YouTube
     </a>
-    <div class="modal-hint">Avtomatik ochilmasa, tugmani bosing.</div>
+    <div class="modal-hint">If it doesn't open automatically, tap the button.</div>
   </div>
 </div>
 
@@ -496,25 +540,22 @@
   var source = (params.get('utm_source') || params.get('src') || cfg.defaultSource || 'direct')
                  .toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,40) || 'direct';
 
-  // ---- 2. Build the Telegram link ----
-  // Bot links (t.me/botname) support ?start=<source> deep-link payloads.
-  // Private channel/group invites (t.me/+hash or /joinchat/...) must stay clean.
-  var base = cfg.telegramLink || 'https://t.me/+3ND_eUdCydU2ZDAy';
-  var isInvite = /t\.me\/(\+|joinchat\/)/i.test(base);
-  var tgUrl = isInvite ? base
-    : base + (base.indexOf('?')>-1 ? '&' : '?') + 'start=' + encodeURIComponent(source);
+  // ---- 2. Destination ----
+  // Used verbatim: YouTube ignores unknown query params, so channel attribution
+  // rides the dataLayer / Pixel instead of the URL.
+  var ytUrl = cfg.youtubeLink || 'https://youtube.com/playlist?list=PLLGFrV7SE5K4';
 
   // ---- 3. Thanks popup + conversion ----
   var overlay = document.getElementById('thanksModal');
-  var modalBtn = document.getElementById('modalTgBtn');
+  var modalBtn = document.getElementById('modalYtBtn');
   var redirectT;
-  modalBtn.setAttribute('href', tgUrl);
+  modalBtn.setAttribute('href', ytUrl);
   // Explicit null check so redirectDelayMs:0 means "no wait", not "use default".
   var redirectDelay = cfg.redirectDelayMs == null ? 350 : cfg.redirectDelayMs;
 
   function fireConversion(){
     try{ (window.dataLayer=window.dataLayer||[]).push({event:'lead', source:source}); }catch(e){}
-    try{ if(typeof fbq==='function') fbq('track','Lead',{content_name:'APPDATE waitlist', content_category:'lead_magnet', source:source}); }catch(e){}
+    try{ if(typeof fbq==='function') fbq('track','Lead',{content_name:'SAT Full Course', content_category:'lead_magnet', source:source}); }catch(e){}
   }
   function openThanks(){
     overlay.style.display='flex';
@@ -522,7 +563,7 @@
     try{ modalBtn.focus(); }catch(e){}
     fireConversion();
     clearTimeout(redirectT);
-    redirectT = setTimeout(function(){ window.location.href = tgUrl; }, redirectDelay);
+    redirectT = setTimeout(function(){ window.location.href = ytUrl; }, redirectDelay);
   }
   function closeThanks(){
     clearTimeout(redirectT);
@@ -531,7 +572,7 @@
   }
 
   document.querySelectorAll('[data-cta]').forEach(function(el){
-    el.setAttribute('href', tgUrl); // fallback if JS/popup fails
+    el.setAttribute('href', ytUrl); // fallback if JS/popup fails
     el.addEventListener('click', function(ev){
       ev.preventDefault();
       try{ (window.dataLayer=window.dataLayer||[]).push({event:'cta_click', source:source}); }catch(e){}
@@ -545,24 +586,7 @@
   // Tell GTM the source on load
   try{ (window.dataLayer=window.dataLayer||[]).push({event:'lp_view', source:source}); }catch(e){}
 
-  // ---- 4. Countdown ----
-  var target = new Date(cfg.launchDate || '2026-08-15T10:00:00+05:00').getTime();
-  var elD=document.getElementById('cdD'), elH=document.getElementById('cdH'),
-      elM=document.getElementById('cdM'), elS=document.getElementById('cdS');
-  function pad(n){return (n<10?'0':'')+n;}
-  function tick(){
-    var diff = target - Date.now();
-    if(isNaN(target) || diff<=0){
-      var cd=document.getElementById('countdown');
-      if(cd) cd.innerHTML='<div class="cd-done">🚀 APPDATE ishga tushdi — Telegramdan kirib oling!</div>';
-      clearInterval(timer); return;
-    }
-    var d=Math.floor(diff/864e5), h=Math.floor(diff%864e5/36e5), m=Math.floor(diff%36e5/6e4), s=Math.floor(diff%6e4/1e3);
-    elD.textContent=d; elH.textContent=pad(h); elM.textContent=pad(m); elS.textContent=pad(s);
-  }
-  tick(); var timer=setInterval(tick,1000);
-
-  // ---- 5. Score count-up ----
+  // ---- 4. Score count-up ----
   var jump=document.getElementById('scoreJump');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(jump && !reduce){
@@ -570,18 +594,18 @@
     function anim(ts){
       if(!start) start=ts;
       var p=Math.min((ts-start)/dur,1), eased=1-Math.pow(1-p,3), val=Math.floor(eased*1500);
-      jump.textContent="0'dan "+val+"+";
-      if(p<1) requestAnimationFrame(anim); else jump.textContent="0'dan 1500+";
+      jump.textContent="0 to "+val+"+";
+      if(p<1) requestAnimationFrame(anim); else jump.textContent="0 to 1500+";
     }
     setTimeout(function(){ requestAnimationFrame(anim); }, 300);
   }
 
-  // ---- 6. Sticky CTA on scroll ----
+  // ---- 5. Sticky CTA on scroll ----
   var sticky=document.getElementById('stickyCta');
   function onScroll(){ if(sticky){ if(window.scrollY>360) sticky.classList.add('show'); else sticky.classList.remove('show'); } }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
-  // ---- 7. Scroll reveal ----
+  // ---- 6. Scroll reveal ----
   if('IntersectionObserver' in window && !reduce){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
