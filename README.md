@@ -3,8 +3,20 @@
 Mobile-first landing for the free **SAT English + SAT Math** video course.
 Funnel: **Meta / Telegram ads → this landing → thanks popup → YouTube playlist**.
 
-Single page. Clicking any CTA opens a thank-you **popup** that fires the conversion,
-then forwards to the YouTube playlist. Nothing else to load.
+Two pages, same funnel, same tracking:
+
+| Page | Path | Language |
+|---|---|---|
+| `index.html` | `/` | English |
+| `uz/index.html` | `/uz/` | O'zbekcha |
+
+Clicking any CTA opens a thank-you **popup** that fires the conversion, then forwards to
+the YouTube playlist. Nothing else to load.
+
+> **Each page carries its own copy of the CHANGEABLE CONFIG block.** There's no build step,
+> so nothing keeps them in sync for you — change the YouTube link, GTM ID, Pixel ID or
+> redirect timing in one, change it in the other. The banner at the top of each block
+> says so.
 
 ## ✅ Already configured — just deploy
 | Setting | Value (live in `index.html`) |
@@ -15,7 +27,7 @@ then forwards to the YouTube playlist. Nothing else to load.
 | Popup floor / ceiling | `200ms` / `900ms` (see **Redirect speed**) |
 
 Nothing needs editing to go live. To tweak later, everything sits in the
-**CHANGEABLE CONFIG** block at the top of `index.html`.
+**CHANGEABLE CONFIG** block at the top of each page.
 
 ## What the page says
 Two courses, one playlist:
@@ -31,7 +43,8 @@ Desmos tricks used in SATashkent's real classes — for free.
 ## Files
 | File | What it is |
 |---|---|
-| `index.html` | The whole thing — page, popup, config, tracking |
+| `index.html` | English page — page, popup, config, tracking |
+| `uz/index.html` | Uzbek page — same markup, CSS and JS; only the words differ |
 | `logo.svg` | SATashkent crest (logo + favicon) |
 | `fonts/` | Self-hosted Inter + Plus Jakarta Sans (variable woff2, latin subset) |
 | `_headers` / `vercel.json` | Long-lived cache headers for fonts (Netlify / Vercel) |
@@ -48,6 +61,7 @@ Send each channel to the landing with a `utm_source`:
 
 - Meta ads → `https://yoursite.com/?utm_source=meta`
 - Telegram ads → `https://yoursite.com/?utm_source=telegram`
+- Uzbek-language ads → the same, on `/uz/` — e.g. `https://yoursite.com/uz/?utm_source=meta`
 
 That source flows into every dataLayer event as a `source` property, so you can split
 reporting by channel in GTM / Meta. The YouTube link is used verbatim — YouTube ignores
@@ -64,6 +78,8 @@ unknown query params, so attribution rides the dataLayer instead of the URL.
 1. Add your **Meta Pixel** tag (or keep the built-in fallback and set `metaPixelId:""`).
 2. Trigger it on the custom event **`lead`** — that is the popup opening.
 3. `source` is in the dataLayer if you want per-channel breakdowns.
+4. To split **Uzbek vs English**, use GTM's built-in `Page Path` (`/uz/` vs `/`), or a
+   "URL contains `/uz/`" rule on a Meta custom conversion. Both pages push identical events.
 
 **Your `ViewContent` custom conversion goes on the `lead` event.** It fires the moment the
 popup opens, and the redirect deliberately waits for GTM to confirm every tag bound to it
