@@ -161,13 +161,6 @@
     font-family:'Plus Jakarta Sans',sans-serif;
     font-weight:800;font-size:16.5px;letter-spacing:-.02em;color:var(--ink);
   }
-  .nav-cta{
-    display:inline-flex;align-items:center;gap:7px;
-    background:var(--ink);color:#fff;padding:9px 15px;border-radius:999px;
-    font-weight:600;font-size:13.5px;text-decoration:none;white-space:nowrap;
-    transition:background .2s ease, transform .2s ease;cursor:pointer;
-  }
-  .nav-cta:hover{background:var(--red);transform:translateY(-1px)}
 
   /* ---------- HERO ---------- */
   .hero{padding:52px 0 16px;text-align:center;position:relative}
@@ -176,17 +169,6 @@
     background:
       radial-gradient(70% 55% at 50% -5%, rgba(170,35,59,.10) 0%, transparent 70%),
       radial-gradient(45% 40% at 85% 20%, rgba(170,35,59,.06) 0%, transparent 70%);
-  }
-  .pill{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:6px 14px;border-radius:999px;
-    background:var(--red-tint);color:var(--red);
-    font-size:12.5px;font-weight:700;margin-bottom:26px;
-    animation:fadeUp .6s ease-out .05s backwards;
-  }
-  .pill::before{
-    content:"";width:6px;height:6px;border-radius:50%;background:var(--red);
-    box-shadow:0 0 0 4px rgba(170,35,59,.18);animation:pulse 2s ease-in-out infinite;
   }
   h1{
     font-family:'Plus Jakarta Sans',sans-serif;
@@ -206,25 +188,6 @@
     font-size:clamp(14px,3.9vw,18px);color:var(--ink-3);line-height:1.55;
     animation:fadeUp .7s ease-out .25s backwards;
   }
-  .hero-sub strong{color:var(--ink);font-weight:700}
-  .hero-sub .tag{color:var(--red);font-weight:700}
-
-  /* ---------- HERO STATS ---------- */
-  /* Same grid rhythm the countdown used to occupy, so the mobile hero keeps
-     its tuned vertical spacing — just static facts instead of a ticking clock. */
-  .stats{margin:34px auto 0;max-width:340px;animation:fadeUp .7s ease-out .32s backwards}
-  .stats-label{
-    font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--ink-4);margin-bottom:10px;
-  }
-  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .stat-cell{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:9px 4px 8px}
-  .stat-num{
-    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
-    font-size:clamp(20px,5.6vw,34px);line-height:1;color:var(--ink);
-    letter-spacing:-.02em;font-variant-numeric:tabular-nums;
-  }
-  .stat-unit{margin-top:4px;font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4)}
 
   /* ---------- BUTTONS ---------- */
   .hero-cta-row{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:34px;animation:fadeUp .7s ease-out .4s backwards}
@@ -238,7 +201,6 @@
   }
   .btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 16px 38px -8px rgba(170,35,59,.6)}
   .btn-primary:focus-visible{outline:3px solid rgba(170,35,59,.4);outline-offset:3px}
-  .btn-note{font-size:12.5px;color:var(--ink-4);font-weight:500}
 
   /* ---------- SECTIONS ---------- */
   section.block{padding:48px 0}
@@ -374,7 +336,6 @@
 
   /* ---------- ANIMATIONS ---------- */
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(170,35,59,.18)}50%{box-shadow:0 0 0 7px rgba(170,35,59,.06)}}
   @keyframes spin{to{transform:rotate(360deg)}}
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease}
   .reveal.in{opacity:1;transform:translateY(0)}
@@ -391,12 +352,6 @@
     .nav-inner{height:64px}
     .brand span{font-size:18px}
     .hero{padding:72px 0 20px}
-    .stats{margin-top:38px;max-width:420px}
-    .stats-label{font-size:12px;margin-bottom:12px}
-    .stat-cell{padding:12px 4px 10px}
-    .stat-num{font-size:34px}
-    .stat-unit{font-size:10.5px;margin-top:6px}
-    .stat-grid{gap:12px}
     .course-grid{grid-template-columns:repeat(2,1fr);gap:20px}
     .course{padding:30px 26px}
     section.block{padding:64px 0}
@@ -418,38 +373,19 @@
       <img src="logo.svg" alt="SATashkent" width="30" height="30">
       <span>SATashkent</span>
     </a>
-    <a href="#" class="nav-cta" data-cta>
-      <svg class="yt-ico" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
-      Watch free
-    </a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="container">
-    <div class="pill">26 free lessons · Now on YouTube</div>
-    <h1><span class="big" id="scoreJump">0 to 1500+</span><br>SAT is now <span class="accent">free.</span></h1>
-    <p class="hero-sub">
-      Every SAT <span class="tag">English</span> and <span class="tag">Math</span> topic from SATashkent's real
-      classes — the same mentors, the same presentations, the same Desmos tricks.
-      <strong>26 lessons. Zero cost.</strong>
-    </p>
-
-    <div class="stats">
-      <div class="stats-label">What's inside</div>
-      <div class="stat-grid">
-        <div class="stat-cell"><div class="stat-num">11</div><div class="stat-unit">English</div></div>
-        <div class="stat-cell"><div class="stat-num">15</div><div class="stat-unit">Math</div></div>
-        <div class="stat-cell"><div class="stat-num">26</div><div class="stat-unit">Lessons</div></div>
-      </div>
-    </div>
+    <h1><span class="big" id="scoreJump">0 to 1500+</span><br>SAT is now <span class="accent">free</span></h1>
+    <p class="hero-sub">SATashkent's real English and Math classes, now on YouTube.</p>
 
     <div class="hero-cta-row">
       <a href="#" class="btn-primary" data-cta>
         <svg class="yt-ico" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
         Watch the full course — free
       </a>
-      <div class="btn-note">No signup. No payment. Just press play.</div>
     </div>
   </div>
 </section>
