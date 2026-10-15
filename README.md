@@ -20,6 +20,7 @@ Everything sits in the **CHANGEABLE CONFIG** block at the top of `index.html`.
 |---|---|
 | `index.html` | The whole site — page, popup, config, tracking, and the nav lockup (inlined SVG) |
 | `mark.svg` | Shield only — favicon and the popup logo |
+| `img/` | `lesson-math-12.jpg` — the hero thumbnail, phones only |
 | `logo.svg` | Full crest with the circular wordmark (kept, currently unused) |
 | `fonts/` | Self-hosted Source Serif 4 + Outfit, latin subset |
 | `_headers` / `vercel.json` | Long-lived cache headers (Netlify / Vercel) |

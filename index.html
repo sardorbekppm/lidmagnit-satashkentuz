@@ -362,6 +362,17 @@
   }
 
   /* ---------- RESPONSIVE (scale up) ---------- */
+  .hero-shot{display:none}
+
+  @media (max-width:719px){
+    .hero-shot{
+      display:block;width:100%;max-width:340px;aspect-ratio:16/9;
+      margin:clamp(18px,3vh,30px) auto 0;border-radius:12px;
+      background:url('img/lesson-math-12.jpg') center/cover no-repeat;
+      box-shadow:0 14px 34px -18px rgba(20,10,16,.5);
+    }
+  }
+
   @media (min-width:720px){
     .container{padding:0 28px}
     :root{--nav-h:64px}
@@ -421,6 +432,7 @@
 <section class="hero">
   <div class="container">
     <h1>The full SAT course,<br><em>now free.</em><sup>[1]</sup></h1>
+    <div class="hero-shot" role="img" aria-label="A lesson from the course: Math 12 — Circle Angles"></div>
     <p class="fn"><span class="mark">[1]</span>26 lessons covering every SAT English and Math topic — taught by the same SATashkent mentors whose students scored 1500+.</p>
 
     <div class="hero-cta-row">
