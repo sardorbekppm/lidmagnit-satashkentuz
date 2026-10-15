@@ -31,7 +31,7 @@ Y Combinator's pairing, self-hosted:
 | Role | Face |
 |---|---|
 | Headline, footnote, section titles, popup title, **buttons** | Source Serif 4 — roman for the headline, *italic* for emphasis, headings and buttons |
-| Wordmark, eyebrows, card titles, lists, footer | Outfit |
+| Wordmark, eyebrows, card titles, lists | Outfit |
 
 Buttons are serif *italic* on purpose — that is how YC sets its "Apply" pill. The serif is the
 **weight-axis file only**; the full variable cut also carries an optical-size axis and costs
