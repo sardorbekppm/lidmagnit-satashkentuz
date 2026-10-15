@@ -34,9 +34,12 @@ Y Combinator's pairing, self-hosted:
 | Headline, footnote, section titles, popup title, **buttons** | Source Serif 4 — roman for the headline, *italic* for emphasis, headings and buttons |
 | Wordmark, eyebrows, card titles, lists | Outfit |
 
-Buttons are serif *italic* on purpose — that is how YC sets its "Apply" pill. The serif is the
-**weight-axis file only**; the full variable cut also carries an optical-size axis and costs
-246KB instead of 70KB.
+Buttons are serif *italic* on purpose — that is how YC sets its "Apply" pill.
+
+The serif roman is the **single 400 instance, 20KB**. Google's CSS API hands you a variable
+file unless you ask for one weight: the weight-axis cut is 51KB, and the full cut with the
+optical-size axis is 127KB. The page sets no serif weight but 400, so the instance is enough.
+Ask the API for `wght@400`, not a range.
 
 ## Deploy
 Live on Netlify at **https://satashkent.netlify.app/**. Every push to `main` auto-redeploys.
