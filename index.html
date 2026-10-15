@@ -162,7 +162,8 @@
   }
   .nav-inner{display:flex;align-items:center;justify-content:center;height:100%}
   .brand{display:flex;align-items:center;gap:9px;text-decoration:none}
-  .lockup{height:38px;width:auto;display:block}
+  .lockup{display:none;height:42px;width:auto}
+  .mark-only{display:block;height:34px;width:auto}
   .lk-mark{fill:#a22135}
   .lk-word{fill:var(--ink)}
   .lk-tag{
@@ -364,7 +365,8 @@
   @media (min-width:720px){
     .container{padding:0 28px}
     :root{--nav-h:64px}
-    .lockup{height:42px}
+    .lockup{display:block}
+    .mark-only{display:none}
     .course-grid{grid-template-columns:repeat(2,1fr);gap:20px}
     .course{padding:30px 26px}
     section.block{padding:64px 0}
@@ -405,6 +407,12 @@
       </g>
       <text class="lk-tag" transform="translate(136.93 102.04)"><tspan x="0" y="0">College Prep Community</tspan></text>
       </g>
+      </svg>
+      <svg class="mark-only" viewBox="0 0 105.2 118.95" role="img" aria-hidden="true">
+      <path class="lk-mark" d="m81.45,66.08l-4.02-4.02-6.52,6.52-.99-3.76-5.49,1.45,2.36,8.94-3.77-1.02-1.49,5.48,8.95,2.43-2.77,2.75,4.01,4.03,6.56-6.52,1,3.75,5.49-1.46-2.38-8.93,3.77,1.01,1.48-5.49-8.93-2.4,2.76-2.76Zm-4.69,8.13l4.72,1.27-4.72,1.26,1.26,4.72-3.44-3.46-3.47,3.45,1.28-4.72-4.7-1.28,4.7-1.24-1.24-4.69,3.42,3.42,3.45-3.45-1.26,4.7Z"/>
+      <path class="lk-mark" d="m0,0v67.49l.03.66c.96,28.48,24.06,50.8,52.57,50.8s51.61-22.31,52.57-50.8l.04-1.02V0H0Zm97.05,67.03l-.03.84c-.39,11.55-5.18,22.34-13.5,30.4-8.33,8.07-19.31,12.52-30.92,12.52-7.66,0-15.05-1.94-21.59-5.58v-22.99h24.82v-24.82h16.94v.03h7.88v-24.82h16.4v34.42Zm-16.39-42.3h-7.88v24.79h-24.82v24.82h-24.82v25.28c-.49-.44-.98-.88-1.45-1.34-8.32-8.06-13.11-18.85-13.5-30.4l-.03-.91V8.15h88.9v16.58h-16.4Z"/>
+      <polygon class="lk-mark" points="15.25 41.64 15.25 49.52 32.19 49.52 32.19 66.46 40.07 66.46 40.07 49.52 40.07 41.64 32.19 41.64 15.25 41.64"/>
+      <path class="lk-mark" d="m40.07,30.21c0-3.02-2.45-5.47-5.47-5.47H15.25v7.88h49.64v-7.88h-19.35c-3.02,0-5.47,2.45-5.47,5.47Z"/>
       </svg>
     </a>
   </div>
