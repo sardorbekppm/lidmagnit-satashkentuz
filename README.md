@@ -1,24 +1,9 @@
 # SATashkent — free SAT course landing
 
-Mobile-first landing for the free **SAT English + SAT Math** video course.
-Funnel: **Meta / Telegram ads → this landing → thanks popup → YouTube playlist**.
+One page. Funnel: **Meta / Telegram ads → this landing → thanks popup → YouTube playlist**.
 
-Two pages, same funnel, same tracking:
-
-| Page | Path | Language |
-|---|---|---|
-| `index.html` | `/` | English |
-| `uz/index.html` | `/uz/` | O'zbekcha |
-| `v2/index.html` | `/v2/` | English, carousel layout |
-| `v3/index.html` | `/v3/` | English, 3D revolving carousel |
-
-Clicking any CTA opens a thank-you **popup** that fires the conversion, then forwards to
-the YouTube playlist. Nothing else to load.
-
-> **Each page carries its own copy of the CHANGEABLE CONFIG block.** There's no build step,
-> so nothing keeps them in sync for you — change the YouTube link, GTM ID, Pixel ID or
-> redirect timing in one, change it in the other. The banner at the top of each block
-> says so.
+Clicking the CTA opens a thank-you **popup** that fires the conversion, then forwards to the
+playlist. Nothing else to load.
 
 ## ✅ Already configured — just deploy
 | Setting | Value (live in `index.html`) |
@@ -28,130 +13,84 @@ the YouTube playlist. Nothing else to load.
 | YouTube playlist | `SAT Full Course \| @satashkent` — 26 lessons |
 | Popup floor / ceiling | `200ms` / `900ms` (see **Redirect speed**) |
 
-Nothing needs editing to go live. To tweak later, everything sits in the
-**CHANGEABLE CONFIG** block at the top of each page.
-
-## What the page says
-Two courses, one playlist:
-
-| Course | Topics | Proof point |
-|---|---|---|
-| SAT English | 11 | mentors whose students graduated with **1500+** scores |
-| SAT Math | 15 | mentors whose students scored **780+** on SAT Math |
-
-Both promise the same explanations, the same presentations, and (for Math) the same
-Desmos tricks used in SATashkent's real classes — for free.
+Everything sits in the **CHANGEABLE CONFIG** block at the top of `index.html`.
 
 ## Files
 | File | What it is |
 |---|---|
-| `index.html` | English page — page, popup, config, tracking |
-| `uz/index.html` | Uzbek page — same markup, CSS and JS; only the words differ |
-| `v2/index.html` | Alternate hero: centred logo, headline, self-running image carousel, CTA |
-| `v3/index.html` | Same hero, but the carousel is a revolving 3D ring with reflections |
-| `img/` | Ten lesson thumbnails pulled from the YouTube playlist, self-hosted |
+| `index.html` | The whole site — page, popup, config, tracking |
 | `mark.svg` | Shield only, no ring text — nav mark + favicon |
 | `logo.svg` | Full crest with the circular wordmark (kept, currently unused) |
-| `fonts/` | Self-hosted Instrument Serif (display) + Inter (everything else), latin subset |
-| `_headers` / `vercel.json` | Long-lived cache headers for fonts (Netlify / Vercel) |
-| `og-image.png` | **Optional** — add a 1200×630 image for Telegram/Meta link previews |
+| `fonts/` | Self-hosted Source Serif 4 + Outfit, latin subset |
+| `_headers` / `vercel.json` | Long-lived cache headers (Netlify / Vercel) |
+| `og-image.png` | **Optional** — add a 1200×630 image for link previews |
 
-## Deploy (GitHub → Netlify or Vercel)
-1. Push `index.html` + `logo.svg` to a GitHub repo (root is fine).
-2. **Netlify:** New site from Git → pick repo → no build command, publish dir = `/`.
-   **Vercel:** New Project → import repo → Framework preset = **Other** → deploy.
-3. Every push to `main` auto-redeploys. Pure static, no build step.
+## Type system
+Y Combinator's pairing, self-hosted:
+
+| Role | Face |
+|---|---|
+| Headline, footnote, section titles, popup title, **buttons** | Source Serif 4 — roman for the headline, *italic* for emphasis, headings and buttons |
+| Wordmark, eyebrows, card titles, lists, footer | Outfit |
+
+Buttons are serif *italic* on purpose — that is how YC sets its "Apply" pill. The serif is the
+**weight-axis file only**; the full variable cut also carries an optical-size axis and costs
+246KB instead of 70KB.
+
+## Deploy
+Live on Netlify at **https://satashkent.netlify.app/**. Every push to `main` auto-redeploys.
+Pure static, no build step.
 
 ## Ad links (channel attribution)
 Send each channel to the landing with a `utm_source`:
 
-- Meta ads → `https://yoursite.com/?utm_source=meta`
-- Telegram ads → `https://yoursite.com/?utm_source=telegram`
-- Uzbek-language ads → the same, on `/uz/` — e.g. `https://yoursite.com/uz/?utm_source=meta`
+- Meta ads → `https://satashkent.netlify.app/?utm_source=meta`
+- Telegram ads → `https://satashkent.netlify.app/?utm_source=telegram`
 
-That source flows into every dataLayer event as a `source` property, so you can split
-reporting by channel in GTM / Meta. The YouTube link is used verbatim — YouTube ignores
-unknown query params, so attribution rides the dataLayer instead of the URL.
+That source flows into every dataLayer event as a `source` property. The YouTube link is used
+verbatim — YouTube ignores unknown query params, so attribution rides the dataLayer, not the URL.
 
 ### Events pushed to the dataLayer
 | Event | When |
 |---|---|
 | `lp_view` | Page loads |
-| `cta_click` | Any CTA clicked |
+| `cta_click` | CTA clicked |
 | `lead` | Thanks popup opens — **this is the conversion** |
 
 ### In GTM (`GTM-WL46HXLT`)
-1. Add your **Meta Pixel** tag (or keep the built-in fallback and set `metaPixelId:""`).
-2. Trigger it on the custom event **`lead`** — that is the popup opening.
-3. `source` is in the dataLayer if you want per-channel breakdowns.
-4. To split **Uzbek vs English**, use GTM's built-in `Page Path` (`/uz/` vs `/`), or a
-   "URL contains `/uz/`" rule on a Meta custom conversion. Both pages push identical events.
+**Your `ViewContent` custom conversion goes on the `lead` event.** It fires the moment the popup
+opens, and the redirect waits for GTM to confirm every tag bound to it has run — so the
+conversion cannot be lost to the navigation.
 
-**Your `ViewContent` custom conversion goes on the `lead` event.** It fires the moment the
-popup opens, and the redirect deliberately waits for GTM to confirm every tag bound to it
-has run before leaving the page — so the conversion cannot be lost to the navigation.
-Nothing else needs wiring.
-
-> ⚠️ **Three things already live in the container that this code doesn't know about**,
-> found by watching the network on a real page load:
-> - A **second Meta Pixel** (`2569268646837340`) fires its own `PageView`, alongside the
+> ⚠️ **Three things live in the container that this code doesn't know about**, found by watching
+> the network on a real page load:
+> - A **second Meta Pixel** (`2569268646837340`) fires its own `PageView` alongside the
 >   `955344730737867` in this file. Every visit is counted by two pixels.
-> - A **Telegram Ads pixel** (`telegram.org/pxl`) still fires — left over from the old
->   Telegram funnel this page no longer uses.
+> - A **Telegram Ads pixel** (`telegram.org/pxl`) still fires — left over from the old funnel.
 > - A Meta **`Subscribe`** event fires on `cta_click`, also from the Telegram days.
 >
-> None of these are fixable from this repo. If you add `ViewContent` on `lead` without
-> clearing them out, one click can report `Subscribe` + `Lead` + `ViewContent` across two
-> pixels. Worth a cleanup pass in GTM before optimizing campaigns against it.
-
-### In Meta Ads Manager
-The popup doesn't change the URL, so use an **event-based** Custom Conversion pointing
-at the **`Lead`** event (not a `/thanks` URL rule), then optimize campaigns for it.
+> None are fixable from this repo. Worth a cleanup pass in GTM before optimizing against it.
 
 ## Redirect speed
-Clicking a CTA opens the popup, fires the conversion, then forwards to YouTube. The old
-build waited a flat `350ms` and hoped that was long enough for the beacons to leave.
-
-It now waits on the conversion itself. The `lead` push carries a GTM **`eventCallback`**,
-which GTM invokes once every tag bound to that event has actually run — measured at
-**17ms** against the live container. Two bounds keep that honest:
+The `lead` push carries a GTM **`eventCallback`**, which fires once every tag bound to that event
+has actually run — measured at **17ms** against the live container.
 
 | Config | Default | What it does |
 |---|---|---|
-| `redirectMinMs` | `200` | Floor. The popup stays up at least this long, so it reads as a confirmation rather than a flash. |
-| `redirectMaxWaitMs` | `900` | Ceiling. If GTM stalls, leave anyway — but the conversion gets first claim on the time. |
+| `redirectMinMs` | `200` | Floor, so the popup reads as a confirmation rather than a flash |
+| `redirectMaxWaitMs` | `900` | Ceiling, so a stalled GTM can't strand anyone |
 
-So the redirect lands at **200ms** (the floor, since tags confirm in 17ms) instead of
-350ms — faster *and* now provably fired rather than assumed. Ad blockers are handled too:
-if the tag scripts fail to load there is nothing to wait for, and the ceiling drops to
-150ms.
-
-The destination is the `www.youtube.com` URL, not the bare `youtube.com` one. The short
-form 301s to it, and skipping that hop saves a full round trip on a phone connection.
+So the redirect lands at **200ms**, and the conversion is confirmed rather than assumed. If the
+tag scripts are blocked outright the ceiling drops to 150ms. The CTA points at the
+`www.youtube.com` URL: the bare host 301s to it, and that hop is a whole round trip on a phone.
 
 ## Performance
-**Nothing third-party touches the critical path.** GTM and the Meta Pixel used to load in
-`<head>` on first byte; between them they pulled ~1.7s of requests (including two
-`.on.aws` calls over 1.1s each) while the page was still settling. Now the `<head>` only
-sets up the queues — `dataLayer.push()` and `fbq()` are safe from the first millisecond —
-and the scripts themselves load **150ms after first paint** (`tagDelayMs`).
+**Nothing third-party touches the critical path.** The `<head>` only sets up the queues —
+`dataLayer.push()` and `fbq()` are safe from the first millisecond — and the scripts load
+**150ms after first paint** (`tagDelayMs`). The queues replay in order, so `lp_view` still
+reports. Three guards: a click before the timer force-loads the tags, a background tab falls back
+at 2.5s, and a blocked request stops the redirect waiting on tags that will never fire.
 
-Nothing is lost by waiting: the queues replay in order once the scripts arrive, so
-`lp_view` still reports. Three guards cover the edges:
-
-- **A click before the timer** force-loads the tags immediately, so an impatient visitor
-  still converts.
-- **A background tab** throttles `requestAnimationFrame`, so a 2.5s fallback loads them
-  regardless.
-- **A blocked request** sets a flag, and the redirect stops waiting on tags that will
-  never fire.
-
-Everything else was already lean and stayed that way: fonts self-hosted in `fonts/`
-(the same variable woff2 files Google Fonts serves, preloaded, `font-display: swap`),
-CSS/JS inline, and `_headers` / `vercel.json` caching the fonts for a year. The page also
-preconnects to `www.youtube.com` so the redirect's TLS handshake is already warm.
-
-> The two font files are **47KB (Inter)** and **27KB (Plus Jakarta Sans)**. They don't
-> block paint — `font-display: swap` renders in a system font first — but they are the
-> largest thing on the wire. If you ever want the page leaner on a slow connection,
-> subsetting Inter to the glyphs actually used is the biggest remaining win.
+Fonts are self-hosted and preloaded (the two serif faces, since the headline paints first),
+CSS/JS are inline, and `_headers` / `vercel.json` cache fonts for a year. The page also
+preconnects to `www.youtube.com` so the redirect's handshake is already warm.
