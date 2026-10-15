@@ -10,6 +10,7 @@ Two pages, same funnel, same tracking:
 | `index.html` | `/` | English |
 | `uz/index.html` | `/uz/` | O'zbekcha |
 | `v2/index.html` | `/v2/` | English, carousel layout |
+| `v3/index.html` | `/v3/` | English, 3D revolving carousel |
 
 Clicking any CTA opens a thank-you **popup** that fires the conversion, then forwards to
 the YouTube playlist. Nothing else to load.
@@ -47,6 +48,7 @@ Desmos tricks used in SATashkent's real classes — for free.
 | `index.html` | English page — page, popup, config, tracking |
 | `uz/index.html` | Uzbek page — same markup, CSS and JS; only the words differ |
 | `v2/index.html` | Alternate hero: centred logo, headline, self-running image carousel, CTA |
+| `v3/index.html` | Same hero, but the carousel is a revolving 3D ring with reflections |
 | `img/` | Ten lesson thumbnails pulled from the YouTube playlist, self-hosted |
 | `logo.svg` | SATashkent crest (logo + favicon) |
 | `fonts/` | Self-hosted Inter + Plus Jakarta Sans (variable woff2, latin subset) |

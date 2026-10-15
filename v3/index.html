@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fde9ed">
+
+<title>Free SAT Course — SATashkent</title>
+<meta name="description" content="Every SAT English and Math lesson from SATashkent's real classes, free on YouTube.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free SAT Course — SATashkent">
+<meta property="og:description" content="26 lessons covering every SAT English and Math topic. Completely free.">
+<meta property="og:image" content="../og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../logo.svg" type="image/svg+xml">
+<link rel="preload" href="../fonts/plus-jakarta-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://connect.facebook.net">
+
+<!-- ============================================================= -->
+<!--  CHANGEABLE CONFIG - edit these values, commit, redeploy       -->
+<!--  CAROUSEL PAGE (/v3/). Config is copied from /index.html -    -->
+<!--  change it here and there both.                               -->
+<!-- ============================================================= -->
+<script>
+  window.SITE_CONFIG = {
+    // Final destination. Every CTA on the page forwards here.
+    // "SAT Full Course | @satashkent" - 26 lessons (11 English + 15 Math).
+    // Uses the www host on purpose: the bare youtube.com URL 301s to it, and
+    // paying that redirect hop is a whole round trip on a phone connection.
+    youtubeLink: "https://www.youtube.com/playlist?list=PLLGFrV7SE5K4&si=u2idTNfMAfUAxL_P",
+
+    // Google Tag Manager container. Leave "" to disable GTM.
+    gtmId: "GTM-WL46HXLT",
+
+    // Meta Pixel fallback so tracking works before GTM tags are live.
+    // Set "" once you fire the Pixel entirely from inside GTM.
+    metaPixelId: "955344730737867",
+
+    // Default source if the ad URL has no ?utm_source=
+    defaultSource: "direct",
+
+    // ---- Redirect timing ----
+    // The popup is the conversion. Rather than guessing a delay, the redirect
+    // waits for GTM to confirm every tag bound to the `lead` event has fired
+    // (eventCallback), then goes. These two only bound that wait:
+    //   min - popup stays up at least this long, so it reads as a confirmation
+    //         instead of a flash. Typical redirect lands right here.
+    //   max - hard ceiling if GTM is slow. Conversion still wins over speed.
+    redirectMinMs: 200,
+    redirectMaxWaitMs: 900,
+
+    // How long after first paint the tracking scripts load. They are kept off
+    // the critical path entirely; a CTA click loads them immediately anyway.
+    tagDelayMs: 150
+  };
+
+  // ---- Tag bootstrap ----------------------------------------------------
+  // GTM and the Pixel used to load in this <head> on the critical path. Between
+  // them they pulled in ~1.7s of requests before the page had settled. Here we
+  // only set up the queues - dataLayer.push() and fbq() are safe to call from
+  // the first millisecond - and defer the actual scripts until after paint.
+  (function(){
+    var cfg = window.SITE_CONFIG;
+    window.dataLayer = window.dataLayer || [];
+
+    // Meta Pixel stub: queues calls until fbevents.js arrives and replays them.
+    (function(f){
+      if(f.fbq) return;
+      var n = f.fbq = function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments); };
+      if(!f._fbq) f._fbq = n;
+      n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+    })(window);
+
+    if(cfg.metaPixelId){ fbq('init', cfg.metaPixelId); fbq('track','PageView'); }
+    if(cfg.gtmId){ window.dataLayer.push({'gtm.start': new Date().getTime(), event:'gtm.js'}); }
+
+    var requested = false;
+    window.SAT_TAGS_BLOCKED = false;   // set if an ad blocker kills the request
+    function inject(src){
+      var el = document.createElement('script');
+      el.async = true; el.src = src;
+      el.onerror = function(){ window.SAT_TAGS_BLOCKED = true; };
+      document.head.appendChild(el);
+    }
+    window.SAT_loadTags = function(){
+      if(requested) return; requested = true;
+      if(cfg.gtmId && cfg.gtmId.indexOf('GTM-') === 0) inject('https://www.googletagmanager.com/gtm.js?id=' + cfg.gtmId);
+      if(cfg.metaPixelId) inject('https://connect.facebook.net/en_US/fbevents.js');
+    };
+
+    var delay = cfg.tagDelayMs == null ? 150 : cfg.tagDelayMs;
+    requestAnimationFrame(function(){ setTimeout(window.SAT_loadTags, delay); });
+    // Background tabs throttle rAF to a crawl, so guarantee a load regardless.
+    setTimeout(window.SAT_loadTags, 2500);
+  })();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=955344730737867&ev=PageView&noscript=1"/></noscript>
+
+<style>
+  @font-face{
+    font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;
+    src:url('../fonts/inter-var-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  }
+  @font-face{
+    font-family:'Plus Jakarta Sans';font-style:normal;font-weight:600 800;font-display:swap;
+    src:url('../fonts/plus-jakarta-sans-var-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  }
+
+  :root{
+    --red:#aa233b; --red-dark:#8e1c30; --red-deep:#6f1526;
+    /* The reference uses #E9C6DD; this is the same idea in SATashkent's palette. */
+    --band:#fde9ed;
+    --ink:#140a10; --ink-3:#5c4650; --ink-4:#a3909a; --border:#f3d7df;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--band);color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;
+  }
+
+  /* Logo, headline, carousel and button share one screen and nothing else. */
+  .hero{
+    min-height:100vh;min-height:100svh;
+    display:flex;flex-direction:column;align-items:center;
+    padding:22px 0 max(26px,env(safe-area-inset-bottom));
+  }
+  .brand{display:flex;align-items:center;gap:9px;text-decoration:none;flex:0 0 auto}
+  .brand img{width:30px;height:30px;display:block}
+  /* Headline, strip and button centre as one group - auto margins pushed them
+     to the extremes and left dead space on tall phones. */
+  .stack{
+    flex:1 1 auto;width:100%;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:clamp(18px,3.4vh,44px);
+  }
+  .brand span{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:800;font-size:16.5px;letter-spacing:-.02em;color:var(--ink);
+  }
+
+  .headline{
+    flex:0 0 auto;padding:0 20px;text-align:center;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+    font-size:clamp(30px,8.4vw,74px);line-height:1.02;letter-spacing:-.03em;
+    text-transform:uppercase;
+  }
+  .headline .num{
+    display:inline-block;font-variant-numeric:tabular-nums;
+    background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:var(--red);
+  }
+
+  /* ---------- 3D CAROUSEL ---------- */
+  /* Ten cards stand on a cylinder: each is turned to its own slot and pushed
+     out by the radius, so revolving the ring walks them past the viewer.
+     Radius is half a card over tan(180/N), which is what sets the faces edge
+     to edge rather than overlapping or leaving gaps. */
+  .scene{
+    flex:0 0 auto;width:100%;position:relative;overflow:hidden;
+    --cw:clamp(190px,27vw,310px);
+    --ch:calc(var(--cw) * .63);
+    /* 1.539 = half a card over tan(18deg), i.e. edge to edge; x1.26 opens gaps. */
+    --r:calc(var(--cw) * 1.94);
+    height:calc(var(--ch) * 1.92);
+    perspective:900px;perspective-origin:50% 38%;
+  }
+  .ring{
+    position:absolute;left:50%;top:0;width:var(--cw);height:var(--ch);
+    margin-left:calc(var(--cw) / -2);
+    transform-style:preserve-3d;
+    transform:translateZ(calc(var(--r) * -1));
+    animation:revolve 38s linear infinite;
+  }
+  .scene:hover .ring{animation-play-state:paused}
+  @keyframes revolve{
+    from{transform:translateZ(calc(var(--r) * -1)) rotateY(0)}
+    to{transform:translateZ(calc(var(--r) * -1)) rotateY(-360deg)}
+  }
+  .face{
+    position:absolute;inset:0;
+    transform:rotateY(calc(var(--i) * 36deg)) translateZ(var(--r));
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  }
+  .face img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    border-radius:10px;box-shadow:0 20px 44px -20px rgba(20,10,16,.6);
+  }
+  /* Reflection: the same image flipped in place under the card. The mask lives
+     in the element's own axes, so it is flipped too - hence fading "to top". */
+  .face::after{
+    content:"";position:absolute;left:0;top:100%;width:100%;height:58%;
+    background:var(--img) center/cover;
+    transform:scaleY(-1);border-radius:10px;opacity:.2;pointer-events:none;
+    -webkit-mask-image:linear-gradient(to top,#000 0%,transparent 72%);
+            mask-image:linear-gradient(to top,#000 0%,transparent 72%);
+  }
+
+  /* ---------- CTA ---------- */
+  .cta-row{flex:0 0 auto;width:100%;padding:0 20px;display:flex;justify-content:center}
+  .btn-primary{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;max-width:420px;background:var(--red);color:#fff;
+    padding:16px 26px;border-radius:999px;font-weight:700;font-size:15.5px;text-decoration:none;
+    box-shadow:0 12px 30px -8px rgba(170,35,59,.5);
+    transition:background .22s ease, transform .22s ease, box-shadow .22s ease;
+    border:none;cursor:pointer;min-height:54px;
+  }
+  .btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 16px 38px -8px rgba(170,35,59,.6)}
+  .btn-primary:focus-visible{outline:3px solid rgba(170,35,59,.4);outline-offset:3px}
+
+  /* ---------- THANKS POPUP ---------- */
+  .modal-overlay{
+    position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:24px;
+    background:rgba(20,10,16,.62);opacity:0;transition:opacity .12s ease;
+  }
+  .modal-overlay.open{opacity:1}
+  .modal-card{
+    background:#fff;border-radius:22px;max-width:380px;width:100%;padding:34px 26px;text-align:center;
+    box-shadow:0 30px 70px -20px rgba(0,0,0,.45);
+    transform:translateY(8px) scale(.98);transition:transform .14s cubic-bezier(.2,.8,.2,1);
+  }
+  .modal-overlay.open .modal-card{transform:translateY(0) scale(1)}
+  .modal-logo{width:56px;height:56px;margin:0 auto 18px;display:block}
+  .modal-ring{
+    width:46px;height:46px;margin:0 auto 18px;border-radius:50%;
+    border:3px solid var(--band);border-top-color:var(--red);animation:spin .9s linear infinite;
+  }
+  .modal-card h2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:24px;letter-spacing:-.02em;margin-bottom:8px;color:var(--ink)}
+  .modal-card p{font-size:15px;color:var(--ink-3);line-height:1.55;margin-bottom:22px}
+  .modal-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--red);color:#fff;
+    text-decoration:none;font-weight:700;font-size:15.5px;padding:14px 24px;border-radius:999px;min-height:52px;width:100%;
+    box-shadow:0 12px 30px -8px rgba(170,35,59,.5);
+  }
+  .modal-btn:focus-visible{outline:3px solid rgba(170,35,59,.4);outline-offset:3px}
+  .modal-hint{margin-top:14px;font-size:12.5px;color:var(--ink-4)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  @media (prefers-reduced-motion:reduce){
+    .ring{animation:none}
+    *{transition:none!important}
+  }
+  @media (min-width:720px){
+    .hero{padding-top:28px}
+    .brand span{font-size:18px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WL46HXLT"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<section class="hero">
+  <a href="#" class="brand">
+    <img src="../logo.svg" alt="" width="30" height="30">
+    <span>SATashkent</span>
+  </a>
+
+  <div class="stack">
+    <h1 class="headline"><span class="num" id="scoreJump">0 to 1500+</span><br>SAT is now free</h1>
+
+  <div class="scene">
+    <div class="ring">
+      <div class="face" style="--i:0;--img:url(../img/lesson-1.jpg)"><img src="../img/lesson-1.jpg" alt="" width="480" height="360"></div>
+      <div class="face" style="--i:1;--img:url(../img/lesson-2.jpg)"><img src="../img/lesson-2.jpg" alt="" width="480" height="360"></div>
+      <div class="face" style="--i:2;--img:url(../img/lesson-3.jpg)"><img src="../img/lesson-3.jpg" alt="" width="480" height="360"></div>
+      <div class="face" style="--i:3;--img:url(../img/lesson-4.jpg)"><img src="../img/lesson-4.jpg" alt="" width="480" height="360"></div>
+      <div class="face" style="--i:4;--img:url(../img/lesson-5.jpg)"><img src="../img/lesson-5.jpg" alt="" width="480" height="360"></div>
+      <div class="face" style="--i:5;--img:url(../img/lesson-6.jpg)"><img src="../img/lesson-6.jpg" alt="" width="480" height="360"></div>
+      <div class="face" style="--i:6;--img:url(../img/lesson-7.jpg)"><img src="../img/lesson-7.jpg" alt="" width="480" height="360"></div>
+      <div class="face" style="--i:7;--img:url(../img/lesson-8.jpg)"><img src="../img/lesson-8.jpg" alt="" width="480" height="360"></div>
+      <div class="face" style="--i:8;--img:url(../img/lesson-9.jpg)"><img src="../img/lesson-9.jpg" alt="" width="480" height="360"></div>
+      <div class="face" style="--i:9;--img:url(../img/lesson-10.jpg)"><img src="../img/lesson-10.jpg" alt="" width="480" height="360"></div>
+    </div>
+  </div>
+
+  <div class="cta-row">
+    <a href="#" class="btn-primary" data-cta>
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      Watch the full course — free
+    </a>
+  </div>
+  </div>
+</section>
+
+<!-- Thanks popup -->
+<div class="modal-overlay" id="thanksModal" role="dialog" aria-modal="true" aria-labelledby="thanksTitle">
+  <div class="modal-card">
+    <img src="../logo.svg" alt="SATashkent" class="modal-logo">
+    <div class="modal-ring" aria-hidden="true"></div>
+    <h2 id="thanksTitle">Let's go! 🎉</h2>
+    <p>Taking you to the full SAT course on YouTube — 11 English and 15 Math lessons, all free.</p>
+    <a href="#" class="modal-btn" id="modalYtBtn" rel="noopener">
+      <svg class="yt-ico" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      Open on YouTube
+    </a>
+    <div class="modal-hint">If it doesn't open automatically, tap the button.</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var cfg = window.SITE_CONFIG || {};
+
+  // ---- 1. Read the ad source (meta / telegram / ...) ----
+  var params = new URLSearchParams(location.search);
+  var source = (params.get('utm_source') || params.get('src') || cfg.defaultSource || 'direct')
+                 .toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,40) || 'direct';
+
+  // ---- 2. Destination ----
+  // Used verbatim: YouTube ignores unknown query params, so channel attribution
+  // rides the dataLayer / Pixel instead of the URL.
+  var ytUrl = cfg.youtubeLink || 'https://youtube.com/playlist?list=PLLGFrV7SE5K4';
+
+  // ---- 3. Thanks popup + conversion ----
+  var overlay = document.getElementById('thanksModal');
+  var modalBtn = document.getElementById('modalYtBtn');
+  modalBtn.setAttribute('href', ytUrl);
+
+  // Bumped on every open/close so a late eventCallback from a popup the visitor
+  // already dismissed can't yank them to YouTube.
+  var openToken = 0, timers = [];
+  function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+
+  function openThanks(){
+    // They're leaving in a moment - the tags have to be in flight now.
+    if(window.SAT_loadTags) window.SAT_loadTags();
+
+    var token = ++openToken;
+    clearTimers();
+    overlay.style.display='flex';
+    requestAnimationFrame(function(){ overlay.classList.add('open'); });
+    try{ modalBtn.focus(); }catch(e){}
+
+    var minMs = cfg.redirectMinMs == null ? 200 : cfg.redirectMinMs;
+    var maxMs = cfg.redirectMaxWaitMs == null ? 900 : cfg.redirectMaxWaitMs;
+    // Nothing to wait for if the tags never made it past an ad blocker.
+    if(window.SAT_TAGS_BLOCKED) maxMs = Math.min(maxMs, 150);
+
+    var tagsFired = false, minPassed = false, navigated = false;
+    function maybeGo(){
+      if(navigated || token !== openToken || !tagsFired || !minPassed) return;
+      navigated = true; clearTimers();
+      window.location.href = ytUrl;
+    }
+    function tagsDone(){ tagsFired = true; maybeGo(); }
+
+    timers.push(setTimeout(function(){ minPassed = true; maybeGo(); }, minMs));
+    timers.push(setTimeout(tagsDone, maxMs));   // ceiling if GTM stalls
+
+    // GTM fires eventCallback once every tag bound to this event has run, so the
+    // redirect is gated on the conversion actually leaving rather than a guess.
+    // >> Point your ViewContent custom conversion at this `lead` event. <<
+    (window.dataLayer=window.dataLayer||[]).push({
+      event:'lead',
+      source:source,
+      eventCallback: tagsDone,
+      eventTimeout: maxMs
+    });
+    try{ if(typeof fbq==='function') fbq('track','Lead',{content_name:'SAT Full Course', content_category:'lead_magnet', source:source}); }catch(e){}
+  }
+
+  function closeThanks(){
+    openToken++;            // invalidates any pending redirect for this open
+    clearTimers();
+    overlay.classList.remove('open');
+    setTimeout(function(){ overlay.style.display='none'; }, 250);
+  }
+
+  document.querySelectorAll('[data-cta]').forEach(function(el){
+    el.setAttribute('href', ytUrl); // fallback if JS/popup fails
+    el.addEventListener('click', function(ev){
+      ev.preventDefault();
+      if(window.SAT_loadTags) window.SAT_loadTags();
+      try{ (window.dataLayer=window.dataLayer||[]).push({event:'cta_click', source:source}); }catch(e){}
+      openThanks();
+    });
+  });
+  // Let people escape the popup (cancels auto-redirect)
+  overlay.addEventListener('click', function(ev){ if(ev.target===overlay) closeThanks(); });
+  document.addEventListener('keydown', function(ev){ if(ev.key==='Escape') closeThanks(); });
+
+  // Tell GTM the source on load
+  try{ (window.dataLayer=window.dataLayer||[]).push({event:'lp_view', source:source}); }catch(e){}
+
+  // ---- 4. Score count-up ----
+  var jump=document.getElementById('scoreJump');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(jump && !reduce){
+    var start=null, dur=1400;
+    function anim(ts){
+      if(!start) start=ts;
+      var p=Math.min((ts-start)/dur,1), eased=1-Math.pow(1-p,3), val=Math.floor(eased*1500);
+      jump.textContent="0 to "+val+"+";
+      if(p<1) requestAnimationFrame(anim); else jump.textContent="0 to 1500+";
+    }
+    setTimeout(function(){ requestAnimationFrame(anim); }, 300);
+  }
+
+  // ---- 5. Sticky CTA on scroll ----
+  // Shown only once the hero button is off screen; with a full-height hero a
+  // fixed pixel threshold would stack a second button under the first.
+  var sticky=document.getElementById('stickyCta');
+  var heroBtn=document.querySelector('.hero .btn-primary');
+  function onScroll(){
+    if(!sticky) return;
+    var past = heroBtn ? heroBtn.getBoundingClientRect().bottom < 0 : window.scrollY > 360;
+    sticky.classList.toggle('show', past);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // ---- 6. Scroll reveal ----
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+    },{threshold:.14});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  } else { document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+})();
+</script>
+</body>
+</html>
