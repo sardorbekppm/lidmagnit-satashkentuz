@@ -162,8 +162,13 @@
   }
   .nav-inner{display:flex;align-items:center;justify-content:center;height:100%}
   .brand{display:flex;align-items:center;gap:9px;text-decoration:none}
-  .brand img{height:28px;width:auto;display:block}
-  .brand span{font-weight:700;font-size:17px;letter-spacing:-.005em;color:var(--ink)}
+  .lockup{height:38px;width:auto;display:block}
+  .lk-mark{fill:#a22135}
+  .lk-word{fill:var(--ink)}
+  .lk-tag{
+    fill:var(--ink);font-family:'Outfit',sans-serif;
+    font-size:30px;font-weight:400;letter-spacing:.2px;
+  }
 
   /* ---------- HERO ---------- */
   /* Bar + hero fill exactly the first screen: brand bar, then headline,
@@ -359,7 +364,7 @@
   @media (min-width:720px){
     .container{padding:0 28px}
     :root{--nav-h:64px}
-    .brand span{font-size:18.5px}
+    .lockup{height:42px}
     .course-grid{grid-template-columns:repeat(2,1fr);gap:20px}
     .course{padding:30px 26px}
     section.block{padding:64px 0}
@@ -377,9 +382,30 @@
 
 <nav>
   <div class="container nav-inner">
-    <a href="#" class="brand">
-      <img src="mark.svg" alt="" width="25" height="28">
-      <span>SATashkent</span>
+    <a href="#" class="brand" aria-label="SATashkent — College Prep Community">
+      <svg class="lockup" viewBox="0 0 666.03 118.95" role="img" aria-hidden="true">
+      <g id="Layer_1-2" data-name="Layer 1">
+      <g>
+      <path class="lk-mark" d="m81.45,66.08l-4.02-4.02-6.52,6.52-.99-3.76-5.49,1.45,2.36,8.94-3.77-1.02-1.49,5.48,8.95,2.43-2.77,2.75,4.01,4.03,6.56-6.52,1,3.75,5.49-1.46-2.38-8.93,3.77,1.01,1.48-5.49-8.93-2.4,2.76-2.76Zm-4.69,8.13l4.72,1.27-4.72,1.26,1.26,4.72-3.44-3.46-3.47,3.45,1.28-4.72-4.7-1.28,4.7-1.24-1.24-4.69,3.42,3.42,3.45-3.45-1.26,4.7Z"/>
+      <path class="lk-mark" d="m0,0v67.49l.03.66c.96,28.48,24.06,50.8,52.57,50.8s51.61-22.31,52.57-50.8l.04-1.02V0H0Zm97.05,67.03l-.03.84c-.39,11.55-5.18,22.34-13.5,30.4-8.33,8.07-19.31,12.52-30.92,12.52-7.66,0-15.05-1.94-21.59-5.58v-22.99h24.82v-24.82h16.94v.03h7.88v-24.82h16.4v34.42Zm-16.39-42.3h-7.88v24.79h-24.82v24.82h-24.82v25.28c-.49-.44-.98-.88-1.45-1.34-8.32-8.06-13.11-18.85-13.5-30.4l-.03-.91V8.15h88.9v16.58h-16.4Z"/>
+      <polygon class="lk-mark" points="15.25 41.64 15.25 49.52 32.19 49.52 32.19 66.46 40.07 66.46 40.07 49.52 40.07 41.64 32.19 41.64 15.25 41.64"/>
+      <path class="lk-mark" d="m40.07,30.21c0-3.02-2.45-5.47-5.47-5.47H15.25v7.88h49.64v-7.88h-19.35c-3.02,0-5.47,2.45-5.47,5.47Z"/>
+      </g>
+      <g>
+      <path class="lk-word" d="m179.38,8.13v9.39h-26.48c-3.61,0-5.62,2.41-5.62,4.98,0,2.17,1.36,4.41,4.25,5.14l19.5,4.65c8.19,2.01,11.88,8.35,11.88,14.45,0,7.62-5.46,15.17-15.81,15.17h-28.25v-9.39h27.84c3.77,0,5.94-2.81,5.94-5.54,0-2.24-1.52-4.73-4.57-5.46l-19.58-4.65c-8.02-1.93-11.56-8.19-11.56-14.13,0-7.38,5.3-14.6,15.41-14.6h27.04Z"/>
+      <path class="lk-word" d="m230.89,61.89l-5.3-12.92h-23.99l-5.22,12.92h-10.59l22.63-53.77h10.59l22.71,53.77h-10.83Zm-25.76-21.67h16.85l-8.51-20.7-8.34,20.7Z"/>
+      <path class="lk-word" d="m284.09,8.13v9.39h-18.7v44.38h-9.55V17.52h-18.7v-9.39h46.95Z"/>
+      <path class="lk-word" d="m324.69,61.89l-5.3-12.92h-23.99l-5.22,12.92h-10.59l22.63-53.77h10.59l22.71,53.77h-10.83Zm-25.76-21.67h16.85l-8.51-20.7-8.34,20.7Z"/>
+      <path class="lk-word" d="m381.66,8.13v9.39h-26.48c-3.61,0-5.62,2.41-5.62,4.98,0,2.17,1.36,4.41,4.25,5.14l19.5,4.65c8.19,2.01,11.88,8.35,11.88,14.45,0,7.62-5.46,15.17-15.81,15.17h-28.25v-9.39h27.84c3.77,0,5.94-2.81,5.94-5.54,0-2.24-1.53-4.73-4.58-5.46l-19.58-4.65c-8.02-1.93-11.56-8.19-11.56-14.13,0-7.38,5.3-14.6,15.41-14.6h27.04Z"/>
+      <path class="lk-word" d="m431.57,8.13h9.55v53.77h-9.55v-23.03h-28.09v23.03h-9.63V8.13h9.63v21.43h28.09V8.13Z"/>
+      <path class="lk-word" d="m488.46,29.71c7.3,0,10.67,3.69,10.67,10.67v21.51h-9.63v-19.58c0-2.41-1.21-3.45-3.61-3.45h-22.55v23.03h-9.63V8.13h9.63v21.59h14.69l11.56-21.59h10.59l-11.8,21.59h.08Z"/>
+      <path class="lk-word" d="m510.92,61.89V8.13h40.52v9.39h-30.9v12.28h27.93v9.07h-27.93v13.64h30.9v9.39h-40.52Z"/>
+      <path class="lk-word" d="m601.52,8.13h9.63v53.77h-9.63l-30.09-40.44v40.44h-9.63V8.13h11.24l28.49,37.96V8.13Z"/>
+      <path class="lk-word" d="m666.03,8.13v9.39h-18.7v44.38h-9.55V17.52h-18.7v-9.39h46.94Z"/>
+      </g>
+      <text class="lk-tag" transform="translate(136.93 102.04)"><tspan x="0" y="0">College Prep Community</tspan></text>
+      </g>
+      </svg>
     </a>
   </div>
 </nav>

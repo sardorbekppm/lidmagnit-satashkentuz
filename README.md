@@ -18,8 +18,8 @@ Everything sits in the **CHANGEABLE CONFIG** block at the top of `index.html`.
 ## Files
 | File | What it is |
 |---|---|
-| `index.html` | The whole site — page, popup, config, tracking |
-| `mark.svg` | Shield only, no ring text — nav mark + favicon |
+| `index.html` | The whole site — page, popup, config, tracking, and the nav lockup (inlined SVG) |
+| `mark.svg` | Shield only — favicon and the popup logo |
 | `logo.svg` | Full crest with the circular wordmark (kept, currently unused) |
 | `fonts/` | Self-hosted Source Serif 4 + Outfit, latin subset |
 | `_headers` / `vercel.json` | Long-lived cache headers (Netlify / Vercel) |
