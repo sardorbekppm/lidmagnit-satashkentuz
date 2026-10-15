@@ -50,8 +50,9 @@ Desmos tricks used in SATashkent's real classes — for free.
 | `v2/index.html` | Alternate hero: centred logo, headline, self-running image carousel, CTA |
 | `v3/index.html` | Same hero, but the carousel is a revolving 3D ring with reflections |
 | `img/` | Ten lesson thumbnails pulled from the YouTube playlist, self-hosted |
-| `logo.svg` | SATashkent crest (logo + favicon) |
-| `fonts/` | Self-hosted Instrument Serif (headlines) + Inter + Plus Jakarta Sans, latin subset |
+| `mark.svg` | Shield only, no ring text — nav mark + favicon |
+| `logo.svg` | Full crest with the circular wordmark (kept, currently unused) |
+| `fonts/` | Self-hosted Instrument Serif (display) + Inter (everything else), latin subset |
 | `_headers` / `vercel.json` | Long-lived cache headers for fonts (Netlify / Vercel) |
 | `og-image.png` | **Optional** — add a 1200×630 image for Telegram/Meta link previews |
 
