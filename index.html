@@ -370,7 +370,13 @@
       margin:clamp(18px,3vh,30px) auto 0;border-radius:12px;
       background:url('img/lesson-math-12.jpg') center/cover no-repeat;
       box-shadow:0 14px 34px -18px rgba(20,10,16,.5);
+      /* Same entrance as the headline and subheadline. The image sits between
+         them, so the two below it shift back a step to keep the cascade
+         running top to bottom; desktop, which has no image, keeps its own. */
+      animation:fadeUp .7s ease-out .25s backwards;
     }
+    .fn{animation-delay:.35s}
+    .hero-cta-row{animation-delay:.45s}
   }
 
   @media (min-width:720px){
