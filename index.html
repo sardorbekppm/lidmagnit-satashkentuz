@@ -40,9 +40,6 @@
     // Google Tag Manager container. Leave "" to disable GTM.
     gtmId: "GTM-WL46HXLT",
 
-    // Meta Pixel fallback so tracking works before GTM tags are live.
-    // Set "" once you fire the Pixel entirely from inside GTM.
-    metaPixelId: "955344730737867",
 
     // Default source if the ad URL has no ?utm_source=
     defaultSource: "direct",
@@ -63,23 +60,19 @@
   };
 
   // ---- Tag bootstrap ----------------------------------------------------
-  // GTM and the Pixel used to load in this <head> on the critical path. Between
-  // them they pulled in ~1.7s of requests before the page had settled. Here we
-  // only set up the queues - dataLayer.push() and fbq() are safe to call from
-  // the first millisecond - and defer the actual scripts until after paint.
+  // GTM used to load in this <head> on the critical path, pulling ~1.7s of
+  // requests before the page had settled. Here we only set up the dataLayer
+  // queue - safe to push to from the first millisecond - and defer gtm.js
+  // until after paint.
+  //
+  // Meta and Telegram pixels are installed by GTM tags, not from this file.
+  // Do not reintroduce a Meta Pixel stub here: the GTM tag's loader opens with
+  // `if(f.fbq) return;`, so a stub defined in this page makes it bail out and
+  // fbevents.js never loads - the pixel then goes silent with no error.
   (function(){
     var cfg = window.SITE_CONFIG;
     window.dataLayer = window.dataLayer || [];
 
-    // Meta Pixel stub: queues calls until fbevents.js arrives and replays them.
-    (function(f){
-      if(f.fbq) return;
-      var n = f.fbq = function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments); };
-      if(!f._fbq) f._fbq = n;
-      n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
-    })(window);
-
-    if(cfg.metaPixelId){ fbq('init', cfg.metaPixelId); fbq('track','PageView'); }
     if(cfg.gtmId){ window.dataLayer.push({'gtm.start': new Date().getTime(), event:'gtm.js'}); }
 
     var requested = false;
@@ -93,7 +86,6 @@
     window.SAT_loadTags = function(){
       if(requested) return; requested = true;
       if(cfg.gtmId && cfg.gtmId.indexOf('GTM-') === 0) inject('https://www.googletagmanager.com/gtm.js?id=' + cfg.gtmId);
-      if(cfg.metaPixelId) inject('https://connect.facebook.net/en_US/fbevents.js');
     };
 
     var delay = cfg.tagDelayMs == null ? 150 : cfg.tagDelayMs;
@@ -102,8 +94,6 @@
     setTimeout(window.SAT_loadTags, 2500);
   })();
 </script>
-<noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=955344730737867&ev=PageView&noscript=1"/></noscript>
 
 <style>
   /* Self-hosted variable fonts — the exact latin-subset woff2 files Google Fonts
