@@ -9,7 +9,7 @@ playlist. Nothing else to load.
 | Setting | Value (live in `index.html`) |
 |---|---|
 | GTM container | `GTM-WL46HXLT` (loader + noscript) |
-| Meta Pixel | `955344730737867` — fires `PageView` only; conversions come from GTM |
+| Meta Pixel | none in this file — GTM's "Meta pixel base" tag installs `2569268646837340` |
 | YouTube playlist | `SAT Full Course \| @satashkent` — 26 lessons |
 | Popup floor / ceiling | `200ms` / `900ms` (see **Redirect speed**) |
 
@@ -70,16 +70,14 @@ to it has run, so the conversion cannot be lost to the navigation.
 `lead` is only a trigger name. It does not send a Meta `Lead` event — that call was removed
 once `Subscribe` became the conversion.
 
-> ⚠️ **Three things live in the container that this code doesn't know about**, found by watching
-> the network on a real page load:
-> - A **second Meta Pixel** (`2569268646837340`) fires its own `PageView` alongside the
->   `955344730737867` in this file. Every visit is counted by two pixels.
-> - A **Telegram Ads pixel** (`telegram.org/pxl`) still fires — left over from the old funnel.
-> - A **`SubscribedButtonClick`** event has been seen on the live site. That one is Meta's own
->   automatic event detection, not this code and not GTM — it is toggled in Events Manager
->   under the pixel's automatic events.
+> ⚠️ **Never put a Meta Pixel stub back in this file.** The GTM tag's loader opens with
+> `if(f.fbq) return;`, so a stub defined here makes it bail out, `fbevents.js` never loads,
+> and the pixel goes silent with no error anywhere. This page defines no `fbq` at all —
+> Meta and Telegram are both installed by GTM tags.
 >
-> None are fixable from this repo. Worth a cleanup pass before optimizing against it.
+> **`SubscribedButtonClick`** has been seen on the live site. That is Meta's own automatic
+> event detection — not this code and not GTM — toggled in Events Manager under the pixel's
+> automatic events.
 
 ## Redirect speed
 The `lead` push carries a GTM **`eventCallback`**, which fires once every tag bound to that event
