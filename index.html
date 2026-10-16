@@ -604,14 +604,14 @@
 
     // GTM fires eventCallback once every tag bound to this event has run, so the
     // redirect is gated on the conversion actually leaving rather than a guess.
-    // >> Point your ViewContent custom conversion at this `lead` event. <<
+    // `lead` is just the trigger name GTM listens on; the page fires no
+    // Meta event of its own, so the conversion is whatever GTM binds here.
     (window.dataLayer=window.dataLayer||[]).push({
       event:'lead',
       source:source,
       eventCallback: tagsDone,
       eventTimeout: maxMs
     });
-    try{ if(typeof fbq==='function') fbq('track','Lead',{content_name:'SAT Full Course', content_category:'lead_magnet', source:source}); }catch(e){}
   }
 
   function closeThanks(){
